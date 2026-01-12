@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+main {
+  font-family: "Inter", sans-serif;
+  background-color: #fafbfd;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #e8974d;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-rechts {
+  display: flex;
+  align-items: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 0;
+}
