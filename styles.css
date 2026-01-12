@@ -3,6 +3,15 @@
 main {
   font-family: "Inter", sans-serif;
   background-color: #fafbfd;
+  margin-left: 0;
+  margin-right: 0;
+  height: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 80vh;
 }
 
 html {
@@ -16,6 +25,8 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .nav-rechts {
