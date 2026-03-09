@@ -2,3 +2,42 @@ header {
   background-color: #e8974d;
 }
 
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+}
+
+.nav-links img {
+  display: block;
+  height: 48px;
+  width: auto;
+}
+
+.nav-rechts {
+  display: flex;
+  gap: 0;
+}
+
+.nav-rechts a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  color: #000;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-left: 1px solid #ccc;
+  transition: background-color 0.2s;
+}
+
+.nav-rechts a:first-child {
+  border-left: none;
+}
+
+.nav-rechts a:hover,
+.nav-rechts a.active-link {
+  background-color: #ddd;
+}

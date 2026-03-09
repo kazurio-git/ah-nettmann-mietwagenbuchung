@@ -1,202 +1,53 @@
-<form
-  #buchungsForm="ngForm"
-  (ngSubmit)="onSubmit(buchungsForm)"
-  class="flex flex-col items-center mx-auto max-w-200 bg-[#b6d4e8] rounded-[20px] p-8 pb-10 shadow-lg"
-  novalidate
->
-  <h2 class="text-xl font-bold mb-6">Mietwagen buchen</h2>
+<div class="form-wrapper">
+  <div class="form-card">
+    <h2>Mietwagen buchen</h2>
 
-  <!-- Kundennummer -->
-  <div class="w-full mb-4 pl-4">
-    <label class="block font-bold mb-1" for="kundennummer">Kundennummer</label>
-    <input
-      #kundennummer="ngModel"
-      [(ngModel)]="model.kundennummer"
-      [class.border-gray-400]="!(kundennummer.invalid && (kundennummer.dirty || submitted))"
-      [class.border-red-500]="kundennummer.invalid && (kundennummer.dirty || submitted)"
-      autocomplete="off"
-      class="w-full max-w-62.5 border rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
-      id="kundennummer"
-      name="kundennummer"
-      pattern="[0-9]{4,10}"
-      placeholder="z. B. 424242"
-      required
-      type="text"
-    />
-    @if (kundennummer.invalid && (kundennummer.dirty || submitted)) {
-      <div class="text-red-600 text-xs mt-1">
-        @if (kundennummer.errors?.['required']) {
-          <span>⚠ Bitte geben Sie Ihre Kundennummer ein.</span>
-        }
-        @if (kundennummer.errors?.['pattern']) {
-          <span>⚠ Die Kundennummer darf nur Ziffern enthalten und muss 4–10 Stellen lang sein.</span>
-        }
-      </div>
-    }
-  </div>
-
-  <!-- Zeitraum -->
-  <div class="w-full mb-4 pl-4">
-    <label class="block font-bold mb-1">Zeitraum</label>
-    <div class="flex items-center gap-3">
-
-      <!-- Startdatum -->
-      <div class="flex flex-col">
-        <label class="text-xs text-gray-600 mb-0.5" for="datum-von">Startdatum</label>
-        <input
-          #datumVon="ngModel"
-          (change)="onDatumChange()"
-          [(ngModel)]="model.datumVon"
-          [class.border-gray-400]="!(datumVon.invalid && (datumVon.dirty || submitted))"
-          [class.border-red-500]="datumVon.invalid && (datumVon.dirty || submitted)"
-          [min]="todayStr"
-          class="w-45 border rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
-          id="datum-von"
-          name="datum-von"
-          required
-          type="date"
-        />
-        @if (datumVon.invalid && (datumVon.dirty || submitted)) {
-          <div class="text-red-600 text-xs mt-1">
-            @if (datumVon.errors?.['required']) {
-              <span>⚠ Startdatum ist erforderlich.</span>
-            }
-            @if (datumVon.errors?.['min']) {
-              <span>⚠ Das Startdatum darf nicht in der Vergangenheit liegen.</span>
-            }
-          </div>
-        }
+    <form>
+      <div class="field-group">
+        <label for="kundennummer">Kundennummer</label>
+        <input class="input-field short" id="kundennummer" placeholder="Kunden-Nr" type="text"/>
       </div>
 
-      <span class="text-xl font-bold mt-4">–</span>
-
-      <!-- Enddatum -->
-      <div class="flex flex-col">
-        <label class="text-xs text-gray-600 mb-0.5" for="datum-bis">Enddatum</label>
-        <input
-          #datumBis="ngModel"
-          (change)="onDatumChange()"
-          [(ngModel)]="model.datumBis"
-          [class.border-gray-400]="!(datumBis.invalid && (datumBis.dirty || submitted)) && !datumFehler"
-          [class.border-red-500]="(datumBis.invalid && (datumBis.dirty || submitted)) || datumFehler"
-          [min]="model.datumVon || todayStr"
-          class="w-45 border rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
-          id="datum-bis"
-          name="datum-bis"
-          required
-          type="date"
-        />
-        @if (datumBis.invalid && (datumBis.dirty || submitted)) {
-          <div class="text-red-600 text-xs mt-1">
-            @if (datumBis.errors?.['required']) {
-              <span>⚠ Enddatum ist erforderlich.</span>
-            }
-            @if (datumBis.errors?.['min']) {
-              <span>⚠ Das Enddatum muss nach dem Startdatum liegen.</span>
-            }
-          </div>
-        }
-        @if (datumFehler && !datumBis.errors?.['required']) {
-          <div class="text-red-600 text-xs mt-1">
-            <span>⚠ Das Rückgabedatum muss nach dem Abholdatum liegen.</span>
-          </div>
-        }
+      <div class="field-group">
+        <label>Zeitraum</label>
+        <div class="date-row">
+          <input class="input-field date-input" placeholder="Start-Datum" type="date"/>
+          <span class="dash">–</span>
+          <input class="input-field date-input" placeholder="End-Datum" type="date"/>
+        </div>
       </div>
 
-    </div>
-  </div>
-
-  <!-- Fahrzeugart -->
-  <div class="w-full mb-4 pl-4">
-    <label class="block font-bold mb-1" for="fahrzeugart">Fahrzeugart</label>
-    <select
-      #fahrzeugart="ngModel"
-      [(ngModel)]="model.fahrzeugart"
-      [class.border-gray-400]="!(fahrzeugart.invalid && (fahrzeugart.dirty || submitted))"
-      [class.border-red-500]="fahrzeugart.invalid && (fahrzeugart.dirty || submitted)"
-      class="w-full max-w-62.5 border rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500 appearance-auto"
-      id="fahrzeugart"
-      name="fahrzeugart"
-      required
-    >
-      <option disabled value="">Bitte wählen …</option>
-      <option value="kleinwagen">Kleinwagen</option>
-      <option value="kombi">Kombi</option>
-      <option value="suv">SUV</option>
-      <option value="limousine">Limousine</option>
-      <option value="transporter">Transporter</option>
-    </select>
-    @if (fahrzeugart.invalid && (fahrzeugart.dirty || submitted)) {
-      <div class="text-red-600 text-xs mt-1">
-        @if (fahrzeugart.errors?.['required']) {
-          <span>⚠ Bitte wählen Sie eine Fahrzeugart aus.</span>
-        }
+      <div class="field-group">
+        <label for="fahrzeugart">Fahrzeugart</label>
+        <select class="input-field select-field" id="fahrzeugart">
+          <option disabled selected value="">Fahrzeugart</option>
+          <option value="pkw">PKW</option>
+          <option value="transporter">Transporter</option>
+          <option value="lkw">LKW</option>
+        </select>
       </div>
-    }
-  </div>
 
-  <!-- Zusatzleistungen -->
-  <fieldset class="w-full mb-4 pl-4 border-none p-0 m-0">
-    <legend class="font-bold mb-2">Zusatzleistungen</legend>
-    <div class="flex gap-6">
-      <label class="flex items-center gap-1.5 text-sm cursor-pointer">
-        <input [(ngModel)]="model.zusatzNavi" class="w-4 h-4 accent-blue-600" name="zusatzNavi" type="checkbox"/>
-        Navi
-      </label>
-      <label class="flex items-center gap-1.5 text-sm cursor-pointer">
-        <input [(ngModel)]="model.zusatzKlimaanlage" class="w-4 h-4 accent-blue-600" name="zusatzKlimaanlage"
-               type="checkbox"/>
-        Klimaanlage
-      </label>
-      <label class="flex items-center gap-1.5 text-sm cursor-pointer">
-        <input [(ngModel)]="model.zusatzStandheizung" class="w-4 h-4 accent-blue-600" name="zusatzStandheizung"
-               type="checkbox"/>
-        Standheizung
-      </label>
-    </div>
-  </fieldset>
-
-  <!-- Abholstation -->
-  <div class="w-full mb-8 pl-4">
-    <label class="block font-bold mb-1" for="abholstation">Abholstation</label>
-    <select
-      #abholstation="ngModel"
-      [(ngModel)]="model.abholstation"
-      [class.border-gray-400]="!(abholstation.invalid && (abholstation.dirty || submitted))"
-      [class.border-red-500]="abholstation.invalid && (abholstation.dirty || submitted)"
-      class="w-full max-w-62.5 border rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500 appearance-auto"
-      id="abholstation"
-      name="abholstation"
-      required
-    >
-      <option value="AN">Autohaus Nettmann</option>
-      <option value="TS">Tankstelle</option>
-      <option value="SB">S-Bahnstation</option>
-      <option value="HBF">Hauptbahnhof</option>
-    </select>
-    @if (abholstation.invalid && (abholstation.dirty || submitted)) {
-      <div class="text-red-600 text-xs mt-1">
-        @if (abholstation.errors?.['required']) {
-          <span>⚠ Bitte wählen Sie eine Abholstation aus.</span>
-        }
+      <div class="field-group">
+        <label>Zusatzleistungen</label>
+        <div class="checkbox-row">
+          <label class="checkbox-label"><input type="checkbox"/> Navi</label>
+          <label class="checkbox-label"><input type="checkbox"/> Klimaanlage</label>
+          <label class="checkbox-label"><input type="checkbox"/> Standheizung</label>
+        </div>
       </div>
-    }
-  </div>
 
-  <!-- Buttons -->
-  <div class="flex gap-4 w-full max-w-125">
-    <button
-      (click)="onReset(buchungsForm)"
-      class="flex-1 py-3 font-bold text-lg rounded-full cursor-pointer shadow-md border-2 border-gray-500 bg-white text-gray-700 hover:bg-gray-100"
-      type="button"
-    >
-      Zurücksetzen
-    </button>
-    <button
-      class="flex-1 py-3 text-white font-bold text-lg rounded-full cursor-pointer shadow-md bg-blue-600 hover:bg-blue-700"
-      type="submit"
-    >
-      Buchen
-    </button>
+      <div class="field-group">
+        <label for="abholort">Abholort</label>
+        <select class="input-field select-field" id="abholort">
+          <option disabled selected value="">Abholort</option>
+          <option value="berlin">Berlin</option>
+          <option value="hamburg">Hamburg</option>
+          <option value="muenchen">München</option>
+        </select>
+      </div>
+
+      <button class="btn-buchen" type="submit">Buchen</button>
+    </form>
   </div>
-</form>
+</div>
+
