@@ -23,7 +23,7 @@ html {
   justify-content: space-between;
   margin-left: 1rem;
   margin-right: 1rem;
-  background-color: #fafbfd;
+  background-color: #e8974d;
 }
 
 .nav-rechts {
@@ -46,6 +46,10 @@ html {
 
   &:first-child {
     border-right: 0.5px solid #000;
+  }
+
+  &.active-link {
+    background-color: #fafbfd;
   }
 }
 

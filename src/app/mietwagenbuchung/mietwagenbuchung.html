@@ -1,12 +1,12 @@
-<div class="flex flex-col items-center mx-auto max-w-[800px] bg-[#b6d4e8] rounded-[20px] p-8 pb-10 shadow-lg">
+<div class="flex flex-col items-center mx-auto max-w-200 bg-[#b6d4e8] rounded-[20px] p-8 pb-10 shadow-lg">
   <h2 class="text-xl font-bold mb-6">Mietwagen buchen</h2>
 
   <!-- Kundennummer -->
   <div class="w-full mb-4 pl-4">
     <label class="block font-bold mb-1">Kundennummer</label>
     <input
-      class="w-full max-w-[250px] border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
-      placeholder="Kunden-Nr."
+      class="w-full max-w-62.5 border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
+      placeholder="424242"
       type="text"
     />
   </div>
@@ -16,13 +16,13 @@
     <label class="block font-bold mb-1">Zeitraum</label>
     <div class="flex items-center gap-3">
       <input
-        class="w-[180px] border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
+        class="w-45 border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
         placeholder="Start-Datum"
         type="date"
       />
       <span class="text-xl font-bold">–</span>
       <input
-        class="w-[180px] border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
+        class="w-45 border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
         placeholder="End-Datum"
         type="date"
       />
@@ -33,9 +33,9 @@
   <div class="w-full mb-4 pl-4">
     <label class="block font-bold mb-1">Fahrzeugart</label>
     <select
-      class="w-full max-w-[250px] border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500 appearance-auto"
+      class="w-full max-w-62.5 border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500 appearance-auto"
     >
-      <option disabled selected value="">Fahrzeugart</option>
+      <option class="text-gray-400 italic" disabled selected value="">Fahrzeugart</option>
       <option value="kleinwagen">Kleinwagen</option>
       <option value="kombi">Kombi</option>
       <option value="suv">SUV</option>
@@ -67,9 +67,9 @@
   <div class="w-full mb-8 pl-4">
     <label class="block font-bold mb-1">Abholort</label>
     <select
-      class="w-full max-w-[250px] border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500 appearance-auto"
+      class="w-full max-w-62.5 border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500 appearance-auto"
     >
-      <option disabled selected value="">Abholort</option>
+      <option class="text-gray-400 italic" disabled selected value="">Bielefeld oder so</option>
       <option value="standort1">Standort 1</option>
       <option value="standort2">Standort 2</option>
       <option value="standort3">Standort 3</option>
@@ -78,8 +78,8 @@
 
   <!-- Buchen Button -->
   <button
-    class="w-full max-w-[500px] py-3 text-white font-bold text-lg rounded-full cursor-pointer shadow-md"
-    style="background: linear-gradient(to right, #1565c0, #42a5f5);"
+    class="w-full max-w-125 py-3 text-white font-bold text-lg rounded-full cursor-pointer shadow-md"
+    mat-flat-button
   >
     Buchen
   </button>
