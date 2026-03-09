@@ -1,57 +1,76 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-main {
-  font-family: "Inter", sans-serif;
-  background-color: #fafbfd;
-  margin-left: 0;
-  margin-right: 0;
-  height: inherit;
-}
-
 body {
-  margin: 0;
-  padding: 0;
-  height: 80vh;
+    margin: 0;
+    padding: 0;
+    height: 80vh;
 }
 
 html {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: #e8974d;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #e8974d;
 }
 
 .navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-left: 1rem;
-  margin-right: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .nav-rechts {
-  display: flex;
-  align-items: flex-end;
-  margin: 0;
-  padding: 0;
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-rechts > a {
-  display: flex;
-  font-weight: bold;
-  padding: 1rem;
-  align-items: center;
-  justify-content: center;
-  background-color: #d9d9d9;
-  color: inherit;
-  text-decoration: none;
-  font-family: "Inter", sans-serif;
+    display: flex;
+    font-weight: bold;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
+    color: inherit;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
 
-  &:first-child {
-    border-right: 0.5px solid #000;
-  }
+    &:first-child {
+        border-right: 0.5px solid #000;
+    }
 }
 
 h1 {
-  margin-top: 0;
+    margin-top: 0;
+}
+
+main {
+    font-family: "Inter", sans-serif;
+    background-color: #fafbfd;
+    margin-left: 0;
+    margin-right: 0;
+    height: 100%;
+    padding-top: 2rem;
+}
+
+div.formular {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    background: lightskyblue;
+    height: 80%;
+    max-width: 800px;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+div.formular > h2 {
+    display: flex;
+
 }
