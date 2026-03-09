@@ -1,0 +1,86 @@
+<div class="flex flex-col items-center mx-auto max-w-[800px] bg-[#b6d4e8] rounded-[20px] p-8 pb-10 shadow-lg">
+  <h2 class="text-xl font-bold mb-6">Mietwagen buchen</h2>
+
+  <!-- Kundennummer -->
+  <div class="w-full mb-4 pl-4">
+    <label class="block font-bold mb-1">Kundennummer</label>
+    <input
+      class="w-full max-w-[250px] border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
+      placeholder="Kunden-Nr."
+      type="text"
+    />
+  </div>
+
+  <!-- Zeitraum -->
+  <div class="w-full mb-4 pl-4">
+    <label class="block font-bold mb-1">Zeitraum</label>
+    <div class="flex items-center gap-3">
+      <input
+        class="w-[180px] border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
+        placeholder="Start-Datum"
+        type="date"
+      />
+      <span class="text-xl font-bold">–</span>
+      <input
+        class="w-[180px] border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
+        placeholder="End-Datum"
+        type="date"
+      />
+    </div>
+  </div>
+
+  <!-- Fahrzeugart -->
+  <div class="w-full mb-4 pl-4">
+    <label class="block font-bold mb-1">Fahrzeugart</label>
+    <select
+      class="w-full max-w-[250px] border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500 appearance-auto"
+    >
+      <option disabled selected value="">Fahrzeugart</option>
+      <option value="kleinwagen">Kleinwagen</option>
+      <option value="kombi">Kombi</option>
+      <option value="suv">SUV</option>
+      <option value="limousine">Limousine</option>
+      <option value="transporter">Transporter</option>
+    </select>
+  </div>
+
+  <!-- Zusatzleistungen -->
+  <div class="w-full mb-4 pl-4">
+    <label class="block font-bold mb-2">Zusatzleistungen</label>
+    <div class="flex gap-6">
+      <label class="flex items-center gap-1.5 text-sm cursor-pointer">
+        <input class="w-4 h-4 accent-blue-600" type="checkbox"/>
+        Navi
+      </label>
+      <label class="flex items-center gap-1.5 text-sm cursor-pointer">
+        <input class="w-4 h-4 accent-blue-600" type="checkbox"/>
+        Klimaanlage
+      </label>
+      <label class="flex items-center gap-1.5 text-sm cursor-pointer">
+        <input class="w-4 h-4 accent-blue-600" type="checkbox"/>
+        Standheizung
+      </label>
+    </div>
+  </div>
+
+  <!-- Abholort -->
+  <div class="w-full mb-8 pl-4">
+    <label class="block font-bold mb-1">Abholort</label>
+    <select
+      class="w-full max-w-[250px] border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500 appearance-auto"
+    >
+      <option disabled selected value="">Abholort</option>
+      <option value="standort1">Standort 1</option>
+      <option value="standort2">Standort 2</option>
+      <option value="standort3">Standort 3</option>
+    </select>
+  </div>
+
+  <!-- Buchen Button -->
+  <button
+    class="w-full max-w-[500px] py-3 text-white font-bold text-lg rounded-full cursor-pointer shadow-md"
+    style="background: linear-gradient(to right, #1565c0, #42a5f5);"
+  >
+    Buchen
+  </button>
+</div>
