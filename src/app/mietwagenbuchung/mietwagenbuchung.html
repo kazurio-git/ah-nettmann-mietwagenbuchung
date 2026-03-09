@@ -5,26 +5,30 @@
     <form>
       <div class="field-group">
         <label for="kundennummer">Kundennummer</label>
-        <input class="input-field short" id="kundennummer" placeholder="Kunden-Nr" type="text"/>
+        <input class="input-field short" id="kundennummer" max="999999" min="1"
+               placeholder="Kunden-Nr" required type="number"/>
+        <span class="error-msg">Bitte eine gültige Kundennummer eingeben.</span>
       </div>
 
       <div class="field-group">
         <label>Zeitraum</label>
         <div class="date-row">
-          <input class="input-field date-input" placeholder="Start-Datum" type="date"/>
+          <input class="input-field date-input" id="startdatum" placeholder="Start-Datum" required type="date"/>
           <span class="dash">–</span>
-          <input class="input-field date-input" placeholder="End-Datum" type="date"/>
+          <input class="input-field date-input" id="enddatum" placeholder="End-Datum" required type="date"/>
         </div>
+        <span class="error-msg">Bitte Start- und End-Datum auswählen.</span>
       </div>
 
       <div class="field-group">
         <label for="fahrzeugart">Fahrzeugart</label>
-        <select class="input-field select-field" id="fahrzeugart">
+        <select class="input-field select-field" id="fahrzeugart" required>
           <option disabled selected value="">Fahrzeugart</option>
           <option value="pkw">PKW</option>
           <option value="transporter">Transporter</option>
           <option value="lkw">LKW</option>
         </select>
+        <span class="error-msg">Bitte eine Fahrzeugart auswählen.</span>
       </div>
 
       <div class="field-group">
@@ -38,12 +42,13 @@
 
       <div class="field-group">
         <label for="abholort">Abholort</label>
-        <select class="input-field select-field" id="abholort">
+        <select class="input-field select-field" id="abholort" required>
           <option disabled selected value="">Abholort</option>
           <option value="berlin">Berlin</option>
           <option value="hamburg">Hamburg</option>
           <option value="muenchen">München</option>
         </select>
+        <span class="error-msg">Bitte einen Abholort auswählen.</span>
       </div>
 
       <button class="btn-buchen" type="submit">Buchen</button>
