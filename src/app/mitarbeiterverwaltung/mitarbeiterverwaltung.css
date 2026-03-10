@@ -28,11 +28,10 @@
 
 /* Tabelle */
 .mitarbeiter-table {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
   max-width: 680px;
-  border-radius: 0 8px 8px 8px;
-  overflow: hidden;
 }
 
 .mitarbeiter-table thead tr {
@@ -49,6 +48,12 @@
 
 .mitarbeiter-table th.colcolor {
   background-color: #5aafe8;
+  border-bottom: 2px solid #7ab8e8;
+}
+
+/* oben-rechts Radius am letzten colcolor-Header */
+.mitarbeiter-table thead th.colcolor-last {
+  border-top-right-radius: 8px;
 }
 
 .mitarbeiter-table tbody tr td.colcolor {
@@ -61,6 +66,11 @@
 
 .mitarbeiter-table tbody tr:hover td.colcolor {
   background-color: #a0cfe8;
+}
+
+/* unten-rechts Radius an der letzten colcolor-Zelle der letzten Zeile */
+.mitarbeiter-table tbody tr:last-child td.colcolor-last {
+  border-bottom-right-radius: 8px;
 }
 
 .mitarbeiter-table td {

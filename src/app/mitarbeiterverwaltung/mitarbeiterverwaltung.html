@@ -13,7 +13,7 @@
       <tr>
         <th class="col-id colcolor">ID</th>
         <th class="col-name colcolor">Nachname</th>
-        <th class="col-pw colcolor">Passwort</th>
+        <th class="col-pw colcolor colcolor-last">Passwort</th>
         <th class="col-row-actions">
           <div class="action-buttons">
             <button (click)="dialogOeffnenNeu()" class="btn-add" title="Neuer Mitarbeiter">
@@ -30,7 +30,7 @@
       <tr *ngFor="let ma of mitarbeiterListe" class="table-row">
         <td class="col-id colcolor">{{ ma.id }}</td>
         <td class="col-name colcolor">{{ ma.nachname }}</td>
-        <td class="col-pw colcolor">
+        <td class="col-pw colcolor colcolor-last">
           <span class="pw-text">{{ ma.passwortSichtbar ? ma.passwort : '•••••' }}</span>
           <button (click)="ma.passwortSichtbar = !ma.passwortSichtbar" class="btn-eye" title="Passwort anzeigen">
             <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
