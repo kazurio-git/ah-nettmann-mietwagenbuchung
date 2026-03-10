@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 
@@ -51,6 +51,16 @@ export class Mitarbeiterverwaltung {
 
   dialogSchliessen(): void {
     this.dialogSichtbar = false;
+  }
+
+  formZuruecksetzen(form: NgForm): void {
+    const modus = this.dialogModus;
+    this.formDaten = {id: '', nachname: '', passwort: ''};
+    form.resetForm();
+    // Im Bearbeitungsmodus die ID beibehalten (Feld ist disabled)
+    if (modus === 'bearbeiten' && this.ausgewaehlterMitarbeiter) {
+      setTimeout(() => this.formDaten.id = this.ausgewaehlterMitarbeiter!.id);
+    }
   }
 
   onSubmit(): void {

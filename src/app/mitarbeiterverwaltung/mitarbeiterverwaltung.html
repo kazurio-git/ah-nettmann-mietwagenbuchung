@@ -73,28 +73,39 @@
     <button (click)="dialogSchliessen()" class="btn-close" title="Schließen">✕</button>
   </div>
 
-  <form #mitarbeiterForm="ngForm" (ngSubmit)="onSubmit()" class="dialog-form">
+  <form #mitarbeiterForm="ngForm" (ngSubmit)="onSubmit()" class="dialog-form" method="POST">
 
     <div class="form-group">
       <label for="ma-id">Mitarbeiter-ID</label>
-      <input [(ngModel)]="formDaten.id" [disabled]="dialogModus === 'bearbeiten'" id="ma-id" name="id"
-             placeholder="z. B. 010"
-             required type="text"/>
+      <input #maId="ngModel" [(ngModel)]="formDaten.id" [disabled]="dialogModus === 'bearbeiten'" id="ma-id"
+             maxlength="6" minlength="3"
+             name="id" pattern="[0-9]{3,6}" placeholder="z. B. 010" required type="text"/>
+      <span *ngIf="maId.invalid && maId.touched" class="error-msg">
+        Bitte eine gültige ID eingeben (3–6 Ziffern).
+      </span>
     </div>
 
     <div class="form-group">
       <label for="ma-name">Nachname</label>
-      <input [(ngModel)]="formDaten.nachname" id="ma-name" name="nachname" placeholder="Nachname eingeben" required
-             type="text"/>
+      <input #maName="ngModel" [(ngModel)]="formDaten.nachname" id="ma-name" maxlength="50" minlength="2"
+             name="nachname" placeholder="Nachname eingeben" required type="text"/>
+      <span *ngIf="maName.invalid && maName.touched" class="error-msg">
+        Bitte einen gültigen Nachnamen eingeben (mind. 2 Zeichen).
+      </span>
     </div>
 
     <div class="form-group">
       <label for="ma-pw">Passwort</label>
-      <input [(ngModel)]="formDaten.passwort" id="ma-pw" name="passwort" placeholder="Passwort eingeben" required
-             type="text"/>
+      <input #maPw="ngModel" [(ngModel)]="formDaten.passwort" id="ma-pw" maxlength="30" minlength="4"
+             name="passwort" placeholder="Passwort eingeben" required type="password"/>
+      <span *ngIf="maPw.invalid && maPw.touched" class="error-msg">
+        Bitte ein Passwort eingeben (mind. 4 Zeichen).
+      </span>
     </div>
 
     <div class="dialog-actions">
+      <button (click)="formZuruecksetzen(mitarbeiterForm)" class="btn-cancel btn-reset" type="button">Zurücksetzen
+      </button>
       <button (click)="dialogSchliessen()" class="btn-cancel" type="button">Abbrechen</button>
       <button [disabled]="!mitarbeiterForm.valid" class="btn-submit" type="submit">
         {{ dialogModus === 'neu' ? 'Anlegen' : 'Speichern' }}

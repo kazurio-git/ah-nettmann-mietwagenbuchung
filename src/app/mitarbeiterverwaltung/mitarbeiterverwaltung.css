@@ -320,3 +320,29 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.btn-reset {
+  border-color: #e74c3c !important;
+  color: #e74c3c !important;
+}
+
+.btn-reset:hover {
+  background: #fdecea !important;
+}
+
+.error-msg {
+  font-size: 0.78rem;
+  color: #c0392b;
+  margin-top: 2px;
+}
+
+.form-group input:user-invalid,
+.form-group input.ng-invalid.ng-touched {
+  border-color: #e74c3c;
+}
+
+.form-group input:user-valid,
+.form-group input.ng-valid.ng-touched {
+  border-color: #2ecc71;
+}
+
