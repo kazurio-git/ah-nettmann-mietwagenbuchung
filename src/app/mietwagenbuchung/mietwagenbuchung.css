@@ -120,9 +120,39 @@
   outline-offset: 2px;
 }
 
+.button-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.btn-reset {
+  flex: 1;
+  padding: 14px;
+  background-color: #fff;
+  color: #1565c0;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid #1565c0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+.btn-reset:hover {
+  background-color: #e3f2fd;
+  box-shadow: 0 4px 12px rgba(21, 101, 192, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-reset:focus-visible {
+  outline: 3px solid #1565c0;
+  outline-offset: 3px;
+}
+
 .btn-buchen {
   display: block;
-  width: 100%;
+  flex: 1;
   padding: 14px;
   background-color: #1565c0;
   color: #fff;
@@ -131,7 +161,6 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 28px;
   transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
 }
 

@@ -2,28 +2,29 @@
   <div class="form-card">
     <h2>Mietwagen buchen</h2>
 
-    (form emthod einbauen )
-    <form>
+    <form method="POST">
       <div class="field-group">
         <label for="kundennummer">Kundennummer</label>
-        <input class="input-field short" id="kundennummer" max="999999" min="1"
+        <input class="input-field short" id="kundennummer" max="999999" min="1" name="kundennummer"
                placeholder="Kunden-Nr" required type="number"/>
         <span class="error-msg">Bitte eine gültige Kundennummer eingeben.</span>
       </div>
 
       <div class="field-group">
-        <label>Zeitraum</label>
+        <label for="startdatum">Zeitraum</label>
         <div class="date-row">
-          <input class="input-field date-input" id="startdatum" required type="date"/>
+          <input class="input-field date-input" id="startdatum" name="startdatum"
+                 required type="date"/>
           <span class="dash">–</span>
-          <input class="input-field date-input" id="enddatum" required type="date"/>
+          <input class="input-field date-input" id="enddatum" name="enddatum" required
+                 type="date"/>
         </div>
         <span class="error-msg">Bitte Start- und End-Datum auswählen.</span>
       </div>
 
       <div class="field-group">
         <label for="fahrzeugart">Fahrzeugart</label>
-        <select class="input-field select-field" id="fahrzeugart" required>
+        <select class="input-field select-field" id="fahrzeugart" name="fahrzeugart" required>
           <option disabled selected value="">Fahrzeugart</option>
           <option value="pkw">PKW</option>
           <option value="transporter">Transporter</option>
@@ -48,7 +49,7 @@
 
       <div class="field-group">
         <label for="abholort">Abholort</label>
-        <select class="input-field select-field" id="abholort" required>
+        <select class="input-field select-field" id="abholort" name="abholort" required>
           <option selected value="AN">Autohaus Nettmann</option>
           <option value="TS">Tankstelle</option>
           <option value="SB">S-Bahnstation</option>
@@ -57,7 +58,10 @@
         <span class="error-msg">Bitte einen Abholort auswählen.</span>
       </div>
 
-      <button class="btn-buchen" tabindex="0" type="submit">Buchen</button>
+      <div class="button-row">
+        <button class="btn-reset" tabindex="0" type="reset">Zurücksetzen</button>
+        <button class="btn-buchen" tabindex="0" type="submit">Buchen</button>
+      </div>
     </form>
   </div>
 </div>
