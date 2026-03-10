@@ -68,9 +68,12 @@
   background-color: #a0cfe8;
 }
 
-/* unten-rechts Radius an der letzten colcolor-Zelle der letzten Zeile */
 .mitarbeiter-table tbody tr:last-child td.colcolor-last {
   border-bottom-right-radius: 8px;
+}
+
+.mitarbeiter-table tbody tr:last-child td.colcolor-first {
+  border-bottom-left-radius: 8px;
 }
 
 .mitarbeiter-table td {
@@ -88,7 +91,7 @@
   width: 260px;
 }
 
-td.col-pw {
+.pw-cell {
   display: flex;
   align-items: center;
   gap: 12px;

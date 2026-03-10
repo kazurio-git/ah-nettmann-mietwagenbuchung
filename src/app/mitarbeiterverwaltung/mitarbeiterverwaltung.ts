@@ -38,6 +38,10 @@ export class Mitarbeiterverwaltung {
     this.dialogSichtbar = true;
   }
 
+  mitarbeiterLoeschen(ma: Mitarbeiter): void {
+    this.mitarbeiterListe = this.mitarbeiterListe.filter(m => m.id !== ma.id);
+  }
+
   dialogOeffnenBearbeiten(ma: Mitarbeiter): void {
     this.dialogModus = 'bearbeiten';
     this.ausgewaehlterMitarbeiter = ma;
