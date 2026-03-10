@@ -11,17 +11,26 @@
     <table class="mitarbeiter-table">
       <thead>
       <tr>
-        <th class="col-id">ID</th>
-        <th class="col-name">Nachname</th>
-        <th class="col-pw">Passwort</th>
-        <th class="col-row-actions"></th>
+        <th class="col-id colcolor">ID</th>
+        <th class="col-name colcolor">Nachname</th>
+        <th class="col-pw colcolor">Passwort</th>
+        <th class="col-row-actions">
+          <div class="action-buttons">
+            <button (click)="dialogOeffnenNeu()" class="btn-add" title="Neuer Mitarbeiter">
+              <svg fill="white" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              </svg>
+            </button>
+          </div>
+
+        </th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let ma of mitarbeiterListe" class="table-row">
-        <td class="col-id">{{ ma.id }}</td>
-        <td class="col-name">{{ ma.nachname }}</td>
-        <td class="col-pw">
+        <td class="col-id colcolor">{{ ma.id }}</td>
+        <td class="col-name colcolor">{{ ma.nachname }}</td>
+        <td class="col-pw colcolor">
           <span class="pw-text">{{ ma.passwortSichtbar ? ma.passwort : '•••••' }}</span>
           <button (click)="ma.passwortSichtbar = !ma.passwortSichtbar" class="btn-eye" title="Passwort anzeigen">
             <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -52,14 +61,6 @@
     </table>
 
     <!-- Nur Hinzufügen-Button rechts -->
-    <div class="action-buttons">
-      <button (click)="dialogOeffnenNeu()" class="btn-add" title="Neuer Mitarbeiter">
-        <svg fill="white" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-        </svg>
-      </button>
-    </div>
-
   </div>
 </div>
 

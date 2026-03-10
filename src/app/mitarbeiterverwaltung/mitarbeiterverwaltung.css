@@ -36,7 +36,7 @@
 }
 
 .mitarbeiter-table thead tr {
-  background-color: #5aafe8;
+  background-color: transparent;
 }
 
 .mitarbeiter-table th {
@@ -45,19 +45,21 @@
   font-size: 1rem;
   font-weight: 700;
   color: #000;
-  border-bottom: 2px solid #7ab8e8;
 }
 
-.mitarbeiter-table tbody tr {
+.mitarbeiter-table th.colcolor {
+  background-color: #5aafe8;
+}
+
+.mitarbeiter-table tbody tr td.colcolor {
   background-color: #d0eaf9;
-  border-bottom: 1px solid #b0d6ef;
 }
 
-.mitarbeiter-table tbody tr:nth-child(even) {
+.mitarbeiter-table tbody tr:nth-child(even) td.colcolor {
   background-color: #bfdef5;
 }
 
-.mitarbeiter-table tbody tr:hover {
+.mitarbeiter-table tbody tr:hover td.colcolor {
   background-color: #a0cfe8;
 }
 
