@@ -51,7 +51,6 @@
   border-bottom: 2px solid #7ab8e8;
 }
 
-/* oben-rechts Radius am letzten colcolor-Header */
 .mitarbeiter-table thead th.colcolor-last {
   border-top-right-radius: 8px;
 }
@@ -165,8 +164,7 @@
   opacity: 1;
 }
 
-.btn-row-edit,
-.btn-row-delete {
+.btn-row-edit, .btn-row-delete {
   width: 30px;
   height: 30px;
   border: none;
@@ -186,8 +184,7 @@
   background-color: #e74c3c;
 }
 
-.btn-row-edit:hover,
-.btn-row-delete:hover {
+.btn-row-edit:hover, .btn-row-delete:hover {
   transform: scale(1.1);
 }
 
@@ -245,15 +242,16 @@
 }
 
 /* Formular */
-.dialog-form {
+.dialog-form, .form-group {
   display: flex;
   flex-direction: column;
+}
+
+.dialog-form {
   gap: 14px;
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
   gap: 5px;
 }
 
@@ -289,13 +287,16 @@
   margin-top: 6px;
 }
 
+.btn-cancel, .btn-submit {
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 0.92rem;
+}
+
 .btn-cancel {
   padding: 8px 18px;
   border: 1px solid #c8d8e8;
-  border-radius: 7px;
   background: #fff;
-  cursor: pointer;
-  font-size: 0.92rem;
   color: #444;
 }
 
@@ -306,12 +307,9 @@
 .btn-submit {
   padding: 8px 20px;
   border: none;
-  border-radius: 7px;
   background: #3498db;
   color: #fff;
-  font-size: 0.92rem;
   font-weight: 600;
-  cursor: pointer;
 }
 
 .btn-submit:hover:not(:disabled) {
