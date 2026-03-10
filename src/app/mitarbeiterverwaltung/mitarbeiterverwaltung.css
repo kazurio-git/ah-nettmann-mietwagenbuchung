@@ -112,7 +112,7 @@
   color: #000;
 }
 
-/* Aktions-Buttons */
+/* Aktions-Buttons (nur + Button rechts neben Tabelle) */
 .action-buttons {
   display: flex;
   flex-direction: column;
@@ -120,9 +120,7 @@
   padding-top: 4px;
 }
 
-.btn-add,
-.btn-edit,
-.btn-delete {
+.btn-add {
   width: 40px;
   height: 40px;
   border: none;
@@ -133,24 +131,185 @@
   justify-content: center;
   transition: opacity 0.2s, transform 0.1s;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.btn-add {
   background-color: #2ecc71;
 }
 
-.btn-edit {
-  background-color: #3498db;
-}
-
-.btn-delete {
-  background-color: #e74c3c;
-}
-
-.btn-add:hover,
-.btn-edit:hover,
-.btn-delete:hover {
+.btn-add:hover {
   opacity: 0.85;
   transform: scale(1.05);
 }
 
+/* Inline Hover-Buttons pro Zeile */
+.col-row-actions {
+  width: 80px;
+  padding: 8px 6px !important;
+}
+
+.row-hover-buttons {
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.table-row:hover .row-hover-buttons {
+  opacity: 1;
+}
+
+.btn-row-edit,
+.btn-row-delete {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+
+.btn-row-edit {
+  background-color: #3498db;
+}
+
+.btn-row-delete {
+  background-color: #e74c3c;
+}
+
+.btn-row-edit:hover,
+.btn-row-delete:hover {
+  transform: scale(1.1);
+}
+
+/* Dialog-Overlay */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 100;
+}
+
+/* Dialog-Box */
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+  z-index: 101;
+  width: 420px;
+  max-width: 95vw;
+  padding: 28px 32px 24px;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.dialog-header h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.btn-close:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+
+/* Formular */
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.form-group input {
+  padding: 9px 12px;
+  border: 1.5px solid #c8d8e8;
+  border-radius: 7px;
+  font-size: 0.97rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #3498db;
+}
+
+.form-group input:disabled {
+  background: #f0f4f8;
+  color: #888;
+}
+
+/* Dialog-Aktionen */
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.btn-cancel {
+  padding: 8px 18px;
+  border: 1.5px solid #c8d8e8;
+  border-radius: 7px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.92rem;
+  color: #444;
+}
+
+.btn-cancel:hover {
+  background: #f0f4f8;
+}
+
+.btn-submit {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 7px;
+  background: #3498db;
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #2176ae;
+}
+
+.btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

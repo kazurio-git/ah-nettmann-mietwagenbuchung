@@ -14,6 +14,7 @@
         <th class="col-id">ID</th>
         <th class="col-name">Nachname</th>
         <th class="col-pw">Passwort</th>
+        <th class="col-row-actions"></th>
       </tr>
       </thead>
       <tbody>
@@ -31,26 +32,30 @@
             </svg>
           </button>
         </td>
+        <td class="col-row-actions">
+          <div class="row-hover-buttons">
+            <button (click)="dialogOeffnenBearbeiten(ma)" class="btn-row-edit" title="Bearbeiten">
+              <svg fill="white" height="15" viewBox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+              </svg>
+            </button>
+            <button class="btn-row-delete" title="Löschen">
+              <svg fill="white" height="15" viewBox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 19c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+              </svg>
+            </button>
+          </div>
+        </td>
       </tr>
       </tbody>
     </table>
 
-    <!-- Aktions-Buttons rechts außen -->
+    <!-- Nur Hinzufügen-Button rechts -->
     <div class="action-buttons">
-      <button class="btn-add" title="Hinzufügen">
+      <button (click)="dialogOeffnenNeu()" class="btn-add" title="Neuer Mitarbeiter">
         <svg fill="white" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-        </svg>
-      </button>
-      <button class="btn-edit" title="Bearbeiten">
-        <svg fill="white" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-        </svg>
-      </button>
-      <button class="btn-delete" title="Löschen">
-        <svg fill="white" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 19c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
         </svg>
       </button>
     </div>
@@ -58,3 +63,42 @@
   </div>
 </div>
 
+<!-- Dialog-Overlay -->
+<div (click)="dialogSchliessen()" *ngIf="dialogSichtbar" class="dialog-overlay"></div>
+
+<div *ngIf="dialogSichtbar" class="dialog">
+  <div class="dialog-header">
+    <h2>{{ dialogModus === 'neu' ? 'Neuen Mitarbeiter anlegen' : 'Mitarbeiter bearbeiten' }}</h2>
+    <button (click)="dialogSchliessen()" class="btn-close" title="Schließen">✕</button>
+  </div>
+
+  <form #mitarbeiterForm="ngForm" (ngSubmit)="onSubmit()" class="dialog-form">
+
+    <div class="form-group">
+      <label for="ma-id">Mitarbeiter-ID</label>
+      <input [(ngModel)]="formDaten.id" [disabled]="dialogModus === 'bearbeiten'" id="ma-id" name="id"
+             placeholder="z. B. 010"
+             required type="text"/>
+    </div>
+
+    <div class="form-group">
+      <label for="ma-name">Nachname</label>
+      <input [(ngModel)]="formDaten.nachname" id="ma-name" name="nachname" placeholder="Nachname eingeben" required
+             type="text"/>
+    </div>
+
+    <div class="form-group">
+      <label for="ma-pw">Passwort</label>
+      <input [(ngModel)]="formDaten.passwort" id="ma-pw" name="passwort" placeholder="Passwort eingeben" required
+             type="text"/>
+    </div>
+
+    <div class="dialog-actions">
+      <button (click)="dialogSchliessen()" class="btn-cancel" type="button">Abbrechen</button>
+      <button [disabled]="!mitarbeiterForm.valid" class="btn-submit" type="submit">
+        {{ dialogModus === 'neu' ? 'Anlegen' : 'Speichern' }}
+      </button>
+    </div>
+
+  </form>
+</div>
