@@ -2,6 +2,7 @@
   <div class="form-card">
     <h2>Mietwagen buchen</h2>
 
+    (form emthod einbauen )
     <form>
       <div class="field-group">
         <label for="kundennummer">Kundennummer</label>
@@ -32,12 +33,17 @@
       </div>
 
       <div class="field-group">
-        <label>Zusatzleistungen</label>
-        <div class="checkbox-row">
-          <label class="checkbox-label"><input type="checkbox"/> Navi</label>
-          <label class="checkbox-label"><input type="checkbox"/> Klimaanlage</label>
-          <label class="checkbox-label"><input type="checkbox"/> Standheizung</label>
-        </div>
+        <fieldset aria-labelledby="zusatz-label" class="checkbox-fieldset" role="group">
+          <legend id="zusatz-label">Zusatzleistungen</legend>
+          <div class="checkbox-row">
+            <label class="checkbox-label" for="cb-navi"><input id="cb-navi" name="navi" tabindex="0" type="checkbox"/>
+              Navi</label>
+            <label class="checkbox-label" for="cb-klima"><input id="cb-klima" name="klimaanlage" tabindex="0"
+                                                                type="checkbox"/> Klimaanlage</label>
+            <label class="checkbox-label" for="cb-heizung"><input id="cb-heizung" name="standheizung" tabindex="0"
+                                                                  type="checkbox"/> Standheizung</label>
+          </div>
+        </fieldset>
       </div>
 
       <div class="field-group">
@@ -47,15 +53,11 @@
           <option value="TS">Tankstelle</option>
           <option value="SB">S-Bahnstation</option>
           <option value="HBF">Hauptbahnhof</option>
-          TS bei Tankstelle
-          SB bei S-Bahnstation
-          AN bei Autohaus Nettmann (Standardwert!),
-          HBF bei Hauptbahhof
         </select>
         <span class="error-msg">Bitte einen Abholort auswählen.</span>
       </div>
 
-      <button class="btn-buchen" type="submit">Buchen</button>
+      <button class="btn-buchen" tabindex="0" type="submit">Buchen</button>
     </form>
   </div>
 </div>
