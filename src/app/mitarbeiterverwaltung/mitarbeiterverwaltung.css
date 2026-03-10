@@ -1,9 +1,18 @@
+/* ─────────────────────────────────────────
+   Seitenlayout
+───────────────────────────────────────── */
+
+/* Außenabstand der gesamten Seite */
 .page-wrapper {
   padding: 28px 32px;
   background-color: #FAFBFD;
 }
 
-/* Tab-Header */
+/* ─────────────────────────────────────────
+   Tab-Header
+───────────────────────────────────────── */
+
+/* Reiter-Optik über der Tabelle */
 .tab-header {
   display: inline-block;
   background-color: #aad4f5;
@@ -19,14 +28,18 @@
   color: #1a1a1a;
 }
 
-/* Tabelle + Buttons nebeneinander */
+/* ─────────────────────────────────────────
+   Tabelle + Aktions-Buttons
+───────────────────────────────────────── */
+
+/* Tabelle und Plus-Button nebeneinander */
 .table-container {
   display: flex;
   align-items: flex-start;
   gap: 14px;
 }
 
-/* Tabelle */
+/* Mitarbeiter-Übersichtstabelle */
 .mitarbeiter-table {
   border-collapse: separate;
   border-spacing: 0;
@@ -46,31 +59,38 @@
   color: #000;
 }
 
+/* Farbige Kopfzeilen-Zellen */
 .mitarbeiter-table th.colcolor {
   background-color: #5aafe8;
   border-bottom: 2px solid #7ab8e8;
 }
 
+/* Abgerundete obere rechte Ecke der letzten Kopfzeilen-Zelle */
 .mitarbeiter-table thead th.colcolor-last {
   border-top-right-radius: 8px;
 }
 
+/* Farbige Datenzellen (ungerade Zeilen) */
 .mitarbeiter-table tbody tr td.colcolor {
   background-color: #d0eaf9;
 }
 
+/* Etwas dunklerer Hintergrund für gerade Zeilen (Zebra-Muster) */
 .mitarbeiter-table tbody tr:nth-child(even) td.colcolor {
   background-color: #bfdef5;
 }
 
+/* Hover-Hervorhebung einer Zeile */
 .mitarbeiter-table tbody tr:hover td.colcolor {
   background-color: #a0cfe8;
 }
 
+/* Abgerundete untere rechte Ecke der letzten Zeile */
 .mitarbeiter-table tbody tr:last-child td.colcolor-last {
   border-bottom-right-radius: 8px;
 }
 
+/* Abgerundete untere linke Ecke der letzten Zeile */
 .mitarbeiter-table tbody tr:last-child td.colcolor-first {
   border-bottom-left-radius: 8px;
 }
@@ -81,21 +101,25 @@
   color: #1a1a1a;
 }
 
+/* Schmale Spalte für die ID */
 .col-id {
   width: 80px;
   text-align: center;
 }
 
+/* Breite Spalte für den Nachnamen */
 .col-name {
   width: 260px;
 }
 
+/* Passwort-Zelle: Icon und Text nebeneinander */
 .pw-cell {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
+/* Passwort-Text: Klartext oder Punkte mit einheitlichem Mindestabstand */
 .pw-text {
   font-size: 1rem;
   letter-spacing: 2px;
@@ -103,7 +127,10 @@
   min-width: 70px;
 }
 
-/* Auge-Button */
+/* ─────────────────────────────────────────
+   Auge-Button (Passwort ein-/ausblenden)
+───────────────────────────────────────── */
+
 .btn-eye {
   background: none;
   border: none;
@@ -121,7 +148,10 @@
   color: #000;
 }
 
-/* Aktions-Buttons (nur + Button rechts neben Tabelle) */
+/* ─────────────────────────────────────────
+   Plus-Button (neuen Mitarbeiter anlegen)
+───────────────────────────────────────── */
+
 .action-buttons {
   display: flex;
   flex-direction: column;
@@ -129,6 +159,7 @@
   padding-top: 4px;
 }
 
+/* Grüner quadratischer Plus-Button rechts neben der Tabelle */
 .btn-add {
   width: 40px;
   height: 40px;
@@ -147,12 +178,17 @@
   transform: scale(1.05);
 }
 
-/* Inline Hover-Buttons pro Zeile */
+/* ─────────────────────────────────────────
+   Zeilen-Hover-Buttons (Bearbeiten / Löschen)
+───────────────────────────────────────── */
+
+/* Spalte für Inline-Aktions-Buttons */
 .col-row-actions {
   width: 80px;
   padding: 8px 6px !important;
 }
 
+/* Buttons sind standardmäßig unsichtbar und erscheinen beim Zeilen-Hover */
 .row-hover-buttons {
   display: flex;
   gap: 6px;
@@ -164,6 +200,7 @@
   opacity: 1;
 }
 
+/* Basis-Styling für Bearbeiten- und Löschen-Button */
 .btn-row-edit, .btn-row-delete {
   width: 30px;
   height: 30px;
@@ -176,10 +213,12 @@
   transition: transform 0.1s;
 }
 
+/* Bearbeiten-Button in Blau */
 .btn-row-edit {
   background-color: #3498db;
 }
 
+/* Löschen-Button in Rot */
 .btn-row-delete {
   background-color: #e74c3c;
 }
@@ -188,7 +227,11 @@
   transform: scale(1.1);
 }
 
-/* Dialog-Overlay */
+/* ─────────────────────────────────────────
+   Dialog-Overlay
+───────────────────────────────────────── */
+
+/* Verdunkelt den Hintergrund wenn der Dialog geöffnet ist */
 .dialog-overlay {
   position: fixed;
   inset: 0;
@@ -196,7 +239,11 @@
   z-index: 100;
 }
 
-/* Dialog-Box */
+/* ─────────────────────────────────────────
+   Dialog-Box
+───────────────────────────────────────── */
+
+/* Zentriertes Modal-Fenster über dem Overlay */
 .dialog {
   position: fixed;
   top: 50%;
@@ -211,6 +258,7 @@
   padding: 28px 32px 24px;
 }
 
+/* Kopfzeile des Dialogs: Titel links, Schließen-Button rechts */
 .dialog-header {
   display: flex;
   align-items: center;
@@ -225,6 +273,7 @@
   color: #1a1a1a;
 }
 
+/* Schließen-Button (✕) oben rechts im Dialog */
 .btn-close {
   background: none;
   border: none;
@@ -241,16 +290,22 @@
   color: #000;
 }
 
-/* Formular */
+/* ─────────────────────────────────────────
+   Dialog-Formular
+───────────────────────────────────────── */
+
+/* Formular und Feldgruppen als vertikale Flex-Container */
 .dialog-form, .form-group {
   display: flex;
   flex-direction: column;
 }
 
+/* Abstand zwischen den einzelnen Feldgruppen */
 .dialog-form {
   gap: 14px;
 }
 
+/* Abstand zwischen Label und Eingabefeld */
 .form-group {
   gap: 5px;
 }
@@ -270,16 +325,22 @@
   transition: border-color 0.2s;
 }
 
+/* Blauer Fokus-Rahmen beim Aktiv-Setzen eines Felds */
 .form-group input:focus {
   border-color: #3498db;
 }
 
+/* Gesperrte Felder (z. B. ID im Bearbeitungsmodus) visuell abschwächen */
 .form-group input:disabled {
   background: #f0f4f8;
   color: #888;
 }
 
-/* Dialog-Aktionen */
+/* ─────────────────────────────────────────
+   Dialog-Aktions-Buttons
+───────────────────────────────────────── */
+
+/* Buttons rechtsbündig anordnen */
 .dialog-actions {
   display: flex;
   justify-content: flex-end;
@@ -287,12 +348,14 @@
   margin-top: 6px;
 }
 
+/* Gemeinsames Basis-Styling für Abbrechen- und Speichern-Button */
 .btn-cancel, .btn-submit {
   border-radius: 7px;
   cursor: pointer;
   font-size: 0.92rem;
 }
 
+/* Abbrechen-Button: weiß mit hellem Rahmen (sekundäre Aktion) */
 .btn-cancel {
   padding: 8px 18px;
   border: 1px solid #c8d8e8;
@@ -304,6 +367,7 @@
   background: #f0f4f8;
 }
 
+/* Speichern-Button: blau gefüllt (primäre Aktion, AK 4) */
 .btn-submit {
   padding: 8px 20px;
   border: none;
@@ -316,11 +380,13 @@
   background: #2176ae;
 }
 
+/* Deaktivierter Zustand: ausgegraut solange das Formular ungültig ist (AK 2) */
 .btn-submit:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
+/* Zurücksetzen-Button: roter Rahmen als Warnung (AK 3) */
 .btn-reset {
   border-color: #e74c3c !important;
   color: #e74c3c !important;
@@ -330,19 +396,25 @@
   background: #fdecea !important;
 }
 
+/* ─────────────────────────────────────────
+   Validierung / Fehlermeldungen (AK 2)
+───────────────────────────────────────── */
+
+/* Fehlermeldung unterhalb des Eingabefeldes */
 .error-msg {
   font-size: 0.78rem;
   color: #c0392b;
   margin-top: 2px;
 }
 
+/* Roter Rahmen bei ungültigem und bereits berührtem Feld (Angular ng-touched) */
 .form-group input:user-invalid,
 .form-group input.ng-invalid.ng-touched {
   border-color: #e74c3c;
 }
 
+/* Grüner Rahmen bei gültigem und bereits berührtem Feld */
 .form-group input:user-valid,
 .form-group input.ng-valid.ng-touched {
   border-color: #2ecc71;
 }
-

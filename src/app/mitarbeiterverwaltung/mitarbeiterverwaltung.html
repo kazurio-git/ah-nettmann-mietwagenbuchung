@@ -1,20 +1,22 @@
 <div class="page-wrapper">
 
-  <!-- Tab-Header -->
+  <!-- Tab-Header über der Tabelle -->
   <div class="tab-header">
     <span class="tab-label">Mitarbeitertabelle</span>
   </div>
 
   <div class="table-container">
 
-    <!-- Tabelle -->
+    <!-- Übersichtstabelle aller Mitarbeiter -->
     <table class="mitarbeiter-table">
       <thead>
       <tr>
         <th class="col-id colcolor">ID</th>
         <th class="col-name colcolor">Nachname</th>
+        <!-- Passwort-Spalte: Wert standardmäßig verborgen, per Auge-Button umschaltbar -->
         <th class="col-pw colcolor colcolor-last">Passwort</th>
         <th class="col-row-actions">
+          <!-- Plus-Button zum Anlegen eines neuen Mitarbeiters -->
           <div class="action-buttons">
             <button (click)="dialogOeffnenNeu()" class="btn-add" title="Neuer Mitarbeiter">
               <svg fill="white" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -27,22 +29,28 @@
       </tr>
       </thead>
       <tbody>
+      <!-- Eine Zeile pro Mitarbeiter; *ngFor iteriert über die lokale Liste -->
       <tr *ngFor="let ma of mitarbeiterListe" class="table-row">
         <td class="col-id colcolor colcolor-first">{{ ma.id }}</td>
         <td class="col-name colcolor">{{ ma.nachname }}</td>
         <td class="col-pw colcolor colcolor-last">
           <div class="pw-cell">
+            <!-- Passwort als Punkte oder Klartext je nach passwortSichtbar-Flag -->
             <span class="pw-text">{{ ma.passwortSichtbar ? ma.passwort : '•••••' }}</span>
+            <!-- Auge-Button schaltet die Sichtbarkeit des Passworts um -->
             <button (click)="ma.passwortSichtbar = !ma.passwortSichtbar" class="btn-eye" title="Passwort anzeigen">
               <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                <!-- Auge-offen-Icon wenn Passwort versteckt ist -->
                 <path *ngIf="!ma.passwortSichtbar"
                       d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+                <!-- Auge-durchgestrichen-Icon wenn Passwort sichtbar ist -->
                 <path *ngIf="ma.passwortSichtbar"
                       d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46A11.804 11.804 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65a3 3 0 0 0 3 3c.22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53a5 5 0 0 1-5-5c0-.79.2-1.53.53-2.2zm4.31-.78 3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/>
               </svg>
             </button>
           </div>
         </td>
+        <!-- Bearbeiten- und Löschen-Buttons erscheinen beim Hover über die Zeile -->
         <td class="col-row-actions">
           <div class="row-hover-buttons">
             <button (click)="dialogOeffnenBearbeiten(ma)" class="btn-row-edit" title="Bearbeiten">
@@ -64,27 +72,34 @@
   </div>
 </div>
 
-<!-- Dialog-Overlay -->
+<!-- Halbtransparentes Overlay hinter dem Dialog; Klick darauf schließt den Dialog -->
 <div (click)="dialogSchliessen()" *ngIf="dialogSichtbar" class="dialog-overlay"></div>
 
+<!-- Dialog-Fenster: erscheint zentriert über dem Overlay -->
 <div *ngIf="dialogSichtbar" class="dialog">
   <div class="dialog-header">
+    <!-- Überschrift wechselt je nach Modus (neu / bearbeiten) -->
     <h2>{{ dialogModus === 'neu' ? 'Neuen Mitarbeiter anlegen' : 'Mitarbeiter bearbeiten' }}</h2>
     <button (click)="dialogSchliessen()" class="btn-close" title="Schließen">✕</button>
   </div>
 
+  <!-- Formular wird per POST versendet (AK 4); ngSubmit ruft onSubmit() auf -->
   <form #mitarbeiterForm="ngForm" (ngSubmit)="onSubmit()" class="dialog-form" method="POST">
 
+    <!-- Pflichtfeld: Mitarbeiter-ID – nur 3–6 Ziffern erlaubt (AK 1 & 2) -->
     <div class="form-group">
       <label for="ma-id">Mitarbeiter-ID</label>
+      <!-- Im Bearbeitungsmodus gesperrt, damit die ID nicht verändert werden kann -->
       <input #maId="ngModel" [(ngModel)]="formDaten.id" [disabled]="dialogModus === 'bearbeiten'" id="ma-id"
              maxlength="6" minlength="3"
              name="id" pattern="[0-9]{3,6}" placeholder="z. B. 010" required type="text"/>
+      <!-- Fehlermeldung erscheint nach dem ersten Berühren des Feldes (AK 2) -->
       <span *ngIf="maId.invalid && maId.touched" class="error-msg">
         Bitte eine gültige ID eingeben (3–6 Ziffern).
       </span>
     </div>
 
+    <!-- Pflichtfeld: Nachname – mindestens 2, höchstens 50 Zeichen (AK 1 & 2) -->
     <div class="form-group">
       <label for="ma-name">Nachname</label>
       <input #maName="ngModel" [(ngModel)]="formDaten.nachname" id="ma-name" maxlength="50" minlength="2"
@@ -94,6 +109,7 @@
       </span>
     </div>
 
+    <!-- Pflichtfeld: Passwort – type="password" maskiert die Eingabe (AK 1 & 2) -->
     <div class="form-group">
       <label for="ma-pw">Passwort</label>
       <input #maPw="ngModel" [(ngModel)]="formDaten.passwort" id="ma-pw" maxlength="30" minlength="4"
@@ -104,9 +120,12 @@
     </div>
 
     <div class="dialog-actions">
+      <!-- Zurücksetzen: leert alle Felder und entfernt Validierungs-Markierungen (AK 3) -->
       <button (click)="formZuruecksetzen(mitarbeiterForm)" class="btn-cancel btn-reset" type="button">Zurücksetzen
       </button>
+      <!-- Abbrechen: schließt den Dialog ohne Änderungen zu speichern -->
       <button (click)="dialogSchliessen()" class="btn-cancel" type="button">Abbrechen</button>
+      <!-- Speichern-Button ist solange deaktiviert, bis alle Pflichtfelder valide sind (AK 2) -->
       <button [disabled]="!mitarbeiterForm.valid" class="btn-submit" type="submit">
         {{ dialogModus === 'neu' ? 'Anlegen' : 'Speichern' }}
       </button>

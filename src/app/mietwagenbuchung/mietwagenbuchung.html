@@ -2,29 +2,38 @@
   <div class="form-card">
     <h2>Mietwagen buchen</h2>
 
+    <!-- Formular wird per POST-Methode versendet (AK 4) -->
     <form method="POST">
+
+      <!-- Pflichtfeld: Kundennummer – nur Zahlen zwischen 1 und 999999 erlaubt (AK 1 & 2) -->
       <div class="field-group">
         <label for="kundennummer">Kundennummer</label>
         <input class="input-field short" id="kundennummer" max="999999" min="1" name="kundennummer"
                placeholder="Kunden-Nr" required type="number"/>
+        <!-- Fehlermeldung wird per CSS bei :user-invalid eingeblendet (AK 2) -->
         <span class="error-msg">Bitte eine gültige Kundennummer eingeben.</span>
       </div>
 
+      <!-- Pflichtfeld: Zeitraum – Start- und Enddatum dürfen nicht in der Vergangenheit liegen (AK 1 & 2) -->
       <div class="field-group">
         <label for="startdatum">Zeitraum</label>
         <div class="date-row">
+          <!-- überarbeite nochmal kommentar -->
           <input class="input-field date-input" id="startdatum" name="startdatum"
                  required type="date"/>
           <span class="dash">–</span>
+          <!-- überarbeite nochmal kommentar -->
           <input class="input-field date-input" id="enddatum" name="enddatum" required
                  type="date"/>
         </div>
         <span class="error-msg">Bitte Start- und End-Datum auswählen.</span>
       </div>
 
+      <!-- Pflichtfeld: Fahrzeugart – Dropdown mit deaktiviertem Platzhalter (AK 1 & 2) -->
       <div class="field-group">
         <label for="fahrzeugart">Fahrzeugart</label>
         <select class="input-field select-field" id="fahrzeugart" name="fahrzeugart" required>
+          <!-- Deaktivierter Platzhalter verhindert, dass ein leerer Wert abgesendet wird (AK 1) -->
           <option disabled selected value="">Fahrzeugart</option>
           <option value="pkw">PKW</option>
           <option value="transporter">Transporter</option>
@@ -33,23 +42,30 @@
         <span class="error-msg">Bitte eine Fahrzeugart auswählen.</span>
       </div>
 
+      <!-- Optionale Zusatzleistungen als Checkbox-Gruppe (AK 1) -->
       <div class="field-group">
+        <!-- Fieldset + Legend für barrierefreie Gruppierung der Checkboxen -->
         <fieldset aria-labelledby="zusatz-label" class="checkbox-fieldset" role="group">
           <legend id="zusatz-label">Zusatzleistungen</legend>
           <div class="checkbox-row">
-            <label class="checkbox-label" for="cb-navi"><input id="cb-navi" name="navi" tabindex="0" type="checkbox"/>
-              Navi</label>
-            <label class="checkbox-label" for="cb-klima"><input id="cb-klima" name="klimaanlage" tabindex="0"
-                                                                type="checkbox"/> Klimaanlage</label>
-            <label class="checkbox-label" for="cb-heizung"><input id="cb-heizung" name="standheizung" tabindex="0"
-                                                                  type="checkbox"/> Standheizung</label>
+            <label class="checkbox-label" for="cb-navi">
+              <input id="cb-navi" name="navi" tabindex="0" type="checkbox"/> Navi
+            </label>
+            <label class="checkbox-label" for="cb-klima">
+              <input id="cb-klima" name="klimaanlage" tabindex="0" type="checkbox"/> Klimaanlage
+            </label>
+            <label class="checkbox-label" for="cb-heizung">
+              <input id="cb-heizung" name="standheizung" tabindex="0" type="checkbox"/> Standheizung
+            </label>
           </div>
         </fieldset>
       </div>
 
+      <!-- Pflichtfeld: Abholort – Dropdown mit sinnvollem Defaultwert "Autohaus Nettmann" (AK 1) -->
       <div class="field-group">
         <label for="abholort">Abholort</label>
         <select class="input-field select-field" id="abholort" name="abholort" required>
+          <!-- Sinnvoller Defaultwert: der häufigste Abholort wird vorausgewählt (AK 1) -->
           <option selected value="AN">Autohaus Nettmann</option>
           <option value="TS">Tankstelle</option>
           <option value="SB">S-Bahnstation</option>
@@ -58,10 +74,13 @@
         <span class="error-msg">Bitte einen Abholort auswählen.</span>
       </div>
 
+      <!-- Button-Zeile: Zurücksetzen löscht alle Felder mit einem Klick (AK 3); Buchen sendet das Formular ab (AK 4) -->
       <div class="button-row">
+        <!-- type="reset" setzt alle Formularfelder nativ auf ihre Initialwerte zurück (AK 3) -->
         <button class="btn-reset" tabindex="0" type="reset">Zurücksetzen</button>
         <button class="btn-buchen" tabindex="0" type="submit">Buchen</button>
       </div>
+
     </form>
   </div>
 </div>

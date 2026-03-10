@@ -1,3 +1,8 @@
+/* ─────────────────────────────────────────
+   Seitenlayout
+───────────────────────────────────────── */
+
+/* Zentriert das Formular horizontal auf der Seite */
 .form-wrapper {
   display: flex;
   justify-content: center;
@@ -5,6 +10,7 @@
   background-color: #FAFBFD;
 }
 
+/* Karte, die das eigentliche Formular umschließt */
 .form-card {
   background-color: #aad4f5;
   border-radius: 16px;
@@ -21,10 +27,16 @@
   color: #000;
 }
 
+/* ─────────────────────────────────────────
+   Formularfelder
+───────────────────────────────────────── */
+
+/* Abstand zwischen den einzelnen Feldgruppen */
 .field-group {
   margin-bottom: 18px;
 }
 
+/* Label über jedem Eingabefeld */
 .field-group > label {
   display: block;
   font-weight: bold;
@@ -33,6 +45,7 @@
   color: #000;
 }
 
+/* Basis-Styling aller Eingabefelder und Dropdowns */
 .input-field {
   background-color: #fff;
   border: 1px solid #ccc;
@@ -45,44 +58,63 @@
   box-sizing: border-box;
 }
 
+/* Fokus-Ring für Tastatur-Navigation (Barrierefreiheit) */
 .input-field:focus-visible {
   outline: 2px solid #1565c0;
   outline-offset: 2px;
 }
 
+/* Verkürzte Breite für kurze Felder wie die Kundennummer */
 .input-field.short {
   max-width: 160px;
 }
 
+/* ─────────────────────────────────────────
+   Zeitraum-Zeile (Start- und Enddatum)
+───────────────────────────────────────── */
+
+/* Legt Start- und Enddatum nebeneinander, getrennt durch einen Gedankenstrich */
 .date-row {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
+/* Feste Breite der Datumsfelder, damit sie nicht aufgebläht werden */
 .date-row .date-input {
   width: 200px;
   flex: 0 0 auto;
 }
 
+/* Gedankenstrich zwischen den beiden Datumsfeldern */
 .dash {
   font-size: 1.2rem;
   color: #333;
 }
 
+/* ─────────────────────────────────────────
+   Dropdown / Select
+───────────────────────────────────────── */
+
+/* Begrenzte Breite und Platz für den nativen Dropdown-Pfeil */
 .select-field {
   max-width: 220px;
   padding-right: 32px;
   cursor: pointer;
 }
 
-/* ── Checkbox-Fieldset ── */
+/* ─────────────────────────────────────────
+   Checkbox-Gruppe (Zusatzleistungen)
+───────────────────────────────────────── */
+
+/* Fieldset ohne sichtbaren Rahmen – rein semantische Gruppierung */
 .checkbox-fieldset {
   border: none;
   margin: 0;
   padding: 0;
 }
 
+/* Legend übernimmt die gleiche optische Rolle wie ein Label */
 .checkbox-fieldset legend {
   font-weight: bold;
   margin-bottom: 6px;
@@ -91,6 +123,7 @@
   padding: 0;
 }
 
+/* Checkboxen werden horizontal nebeneinander angezeigt */
 .checkbox-row {
   display: flex;
   align-items: center;
@@ -98,6 +131,7 @@
   flex-wrap: wrap;
 }
 
+/* Label und Checkbox in einer Zeile */
 .checkbox-label {
   display: flex;
   align-items: center;
@@ -106,26 +140,31 @@
   cursor: pointer;
 }
 
+/* Einheitliche Checkbox-Größe */
 .checkbox-label input[type="checkbox"] {
   width: 15px;
   height: 15px;
   cursor: pointer;
 }
 
-/* ── Barrierefreier Fokus für Checkbox-Labels (Tab-Navigation) ── */
-
-/* Fokus-Ring auf die Checkbox selbst bei Tastatur-Navigation */
+/* Fokus-Ring auf die Checkbox bei Tastatur-Navigation */
 .checkbox-label input[type="checkbox"]:focus-visible {
   outline: 2px solid #1565c0;
   outline-offset: 2px;
 }
 
+/* ─────────────────────────────────────────
+   Button-Zeile
+───────────────────────────────────────── */
+
+/* Zurücksetzen- und Buchen-Button nebeneinander, je gleich breit */
 .button-row {
   display: flex;
   gap: 12px;
   margin-top: 28px;
 }
 
+/* Zurücksetzen-Button: weiß mit blauem Rahmen (sekundäre Aktion, AK 3) */
 .btn-reset {
   flex: 1;
   padding: 14px;
@@ -145,11 +184,13 @@
   transform: translateY(-1px);
 }
 
+/* Fokus-Ring für den Zurücksetzen-Button */
 .btn-reset:focus-visible {
   outline: 3px solid #1565c0;
   outline-offset: 3px;
 }
 
+/* Buchen-Button: blau gefüllt (primäre Aktion, AK 4) */
 .btn-buchen {
   display: block;
   flex: 1;
@@ -170,6 +211,7 @@
   transform: translateY(-1px);
 }
 
+/* Kontrastreicher Fokus-Ring auf dunklem Hintergrund */
 .btn-buchen:focus-visible {
   outline: 3px solid #fff !important;
   outline-offset: 3px;
@@ -177,7 +219,9 @@
   box-shadow: 0 0 0 6px #1565c0;
 }
 
-/* ── Validierung ── */
+/* ─────────────────────────────────────────
+   Validierung / Fehlermeldungen (AK 2)
+───────────────────────────────────────── */
 
 /* Fehlermeldung standardmäßig versteckt */
 .error-msg {
@@ -202,9 +246,8 @@
 }
 
 /* ── Fallback für Browser ohne :user-invalid ──
-   Trick: field-group merkt sich via :focus-within ob das Feld schon besucht wurde.
-   Hat-visited-Trick: sobald das Feld einmal den Fokus hatte, bleibt :focus-within
-   nicht aktiv – daher nutzen wir einen has()-Selektor als Fallback. */
+   Sobald ein Feld den Fokus verloren hat, greift :invalid/:valid direkt.
+   :focus-within verhindert die Einfärbung vor der ersten Interaktion. */
 @supports not selector(:user-invalid) {
   .input-field:invalid {
     border-color: #c62828;
@@ -227,4 +270,3 @@
     display: none;
   }
 }
-

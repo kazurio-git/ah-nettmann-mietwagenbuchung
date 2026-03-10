@@ -9,5 +9,4 @@ import {CommonModule} from '@angular/common';
   styleUrl: './mietwagenbuchung.css',
 })
 export class Mietwagenbuchung {
-
 }
