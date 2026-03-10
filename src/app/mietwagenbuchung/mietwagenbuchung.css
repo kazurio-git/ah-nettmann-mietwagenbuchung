@@ -2,9 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px 20px;
-  background-color: #fff;
-  min-height: calc(100vh - 64px);
+  background-color: #FAFBFD;
 }
 
 .form-card {
@@ -47,6 +45,11 @@
   box-sizing: border-box;
 }
 
+.input-field:focus-visible {
+  outline: 2px solid #1565c0;
+  outline-offset: 2px;
+}
+
 .input-field.short {
   max-width: 160px;
 }
@@ -69,11 +72,6 @@
 
 .select-field {
   max-width: 220px;
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23555' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
   padding-right: 32px;
   cursor: pointer;
 }
@@ -100,6 +98,21 @@
   cursor: pointer;
 }
 
+/* ── Barrierefreier Fokus für Checkbox-Labels (Tab-Navigation) ── */
+
+/* Nativen Fokus-Ring des Inputs unterdrücken */
+.checkbox-label input[type="checkbox"]:focus-visible {
+  outline: none;
+}
+
+/* Fokus-Ring auf das gesamte Label übertragen via :focus-within */
+.checkbox-label:focus-within {
+  outline: 2px solid #1565c0;
+  outline-offset: 3px;
+  border-radius: 4px;
+  background-color: rgba(21, 101, 192, 0.08);
+}
+
 .btn-buchen {
   display: block;
   width: 100%;
@@ -112,7 +125,6 @@
   border-radius: 8px;
   cursor: pointer;
   margin-top: 28px;
-  transition: background-color 0.2s;
 }
 
 .btn-buchen:hover {
@@ -125,52 +137,48 @@
 .error-msg {
   display: none;
   color: #c62828;
-  font-size: 0.78rem;
   margin-top: 4px;
 }
 
-/* Roten Rahmen + Fehlermeldung anzeigen, wenn Feld ungültig UND bereits angefasst wurde */
+/* Roten Rahmen, wenn Feld ungültig UND bereits angefasst wurde (:user-invalid) */
 .input-field:user-invalid {
   border-color: #c62828;
-  box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.2);
 }
 
-.input-field:user-invalid + .error-msg,
+/* Fehlermeldung beim nächsten Geschwister-Span einblenden */
 .input-field:user-invalid ~ .error-msg {
   display: block;
 }
 
-/* Grünen Rahmen, wenn Feld gültig und bereits ausgefüllt */
+/* Grünen Rahmen, wenn Feld gültig und bereits angefasst */
 .input-field:user-valid {
   border-color: #2e7d32;
-  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
 }
 
-/* Fallback für Browser ohne :user-invalid (z. B. Firefox < 88) */
-/* Felder werden erst nach Submit-Versuch rot – dazu form:not([novalidate]) nutzen */
-.input-field:invalid:not(:placeholder-shown) {
-  border-color: #c62828;
-  box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.2);
-}
+/* ── Fallback für Browser ohne :user-invalid ──
+   Trick: field-group merkt sich via :focus-within ob das Feld schon besucht wurde.
+   Hat-visited-Trick: sobald das Feld einmal den Fokus hatte, bleibt :focus-within
+   nicht aktiv – daher nutzen wir einen has()-Selektor als Fallback. */
+@supports not selector(:user-invalid) {
+  .input-field:invalid {
+    border-color: #c62828;
+  }
 
-.input-field:invalid:not(:placeholder-shown) + .error-msg,
-.input-field:invalid:not(:placeholder-shown) ~ .error-msg {
-  display: block;
-}
+  .input-field:invalid ~ .error-msg {
+    display: block;
+  }
 
-.input-field:valid:not(:placeholder-shown) {
-  border-color: #2e7d32;
-  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
-}
+  .input-field:valid {
+    border-color: #2e7d32;
+  }
 
-/* Select-Felder: Fallback über :invalid (kein placeholder-shown verfügbar) */
-select.input-field:user-invalid {
-  border-color: #c62828;
-  box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.2);
-}
+  /* Felder vor der ersten Interaktion nicht einfärben */
+  .field-group:not(:focus-within) .input-field:not(:focus) {
+    border-color: #ccc;
+  }
 
-select.input-field:user-valid {
-  border-color: #2e7d32;
-  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+  .field-group:not(:focus-within) .input-field:not(:focus) ~ .error-msg {
+    display: none;
+  }
 }
 

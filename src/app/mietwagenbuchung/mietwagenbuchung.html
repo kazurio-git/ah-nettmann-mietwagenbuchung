@@ -13,9 +13,9 @@
       <div class="field-group">
         <label>Zeitraum</label>
         <div class="date-row">
-          <input class="input-field date-input" id="startdatum" placeholder="Start-Datum" required type="date"/>
+          <input class="input-field date-input" id="startdatum" required type="date"/>
           <span class="dash">–</span>
-          <input class="input-field date-input" id="enddatum" placeholder="End-Datum" required type="date"/>
+          <input class="input-field date-input" id="enddatum" required type="date"/>
         </div>
         <span class="error-msg">Bitte Start- und End-Datum auswählen.</span>
       </div>
@@ -43,10 +43,14 @@
       <div class="field-group">
         <label for="abholort">Abholort</label>
         <select class="input-field select-field" id="abholort" required>
-          <option disabled selected value="">Abholort</option>
-          <option value="berlin">Berlin</option>
-          <option value="hamburg">Hamburg</option>
-          <option value="muenchen">München</option>
+          <option selected value="AN">Autohaus Nettmann</option>
+          <option value="TS">Tankstelle</option>
+          <option value="SB">S-Bahnstation</option>
+          <option value="HBF">Hauptbahnhof</option>
+          TS bei Tankstelle
+          SB bei S-Bahnstation
+          AN bei Autohaus Nettmann (Standardwert!),
+          HBF bei Hauptbahhof
         </select>
         <span class="error-msg">Bitte einen Abholort auswählen.</span>
       </div>
