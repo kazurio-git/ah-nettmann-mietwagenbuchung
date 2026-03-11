@@ -1,0 +1,420 @@
+/* ─────────────────────────────────────────
+   Seitenlayout
+───────────────────────────────────────── */
+
+/* Außenabstand der gesamten Seite */
+.page-wrapper {
+  padding: 28px 32px;
+  background-color: #FAFBFD;
+}
+
+/* ─────────────────────────────────────────
+   Tab-Header
+───────────────────────────────────────── */
+
+/* Reiter-Optik über der Tabelle */
+.tab-header {
+  display: inline-block;
+  background-color: #aad4f5;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: 6px 18px;
+  margin-bottom: 0;
+}
+
+.tab-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #1a1a1a;
+}
+
+/* ─────────────────────────────────────────
+   Tabelle + Aktions-Buttons
+───────────────────────────────────────── */
+
+/* Tabelle und Plus-Button nebeneinander */
+.table-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* Mitarbeiter-Übersichtstabelle */
+.mitarbeiter-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 680px;
+}
+
+.mitarbeiter-table thead tr {
+  background-color: transparent;
+}
+
+.mitarbeiter-table th {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Farbige Kopfzeilen-Zellen */
+.mitarbeiter-table th.colcolor {
+  background-color: #5aafe8;
+  border-bottom: 2px solid #7ab8e8;
+}
+
+/* Abgerundete obere rechte Ecke der letzten Kopfzeilen-Zelle */
+.mitarbeiter-table thead th.colcolor-last {
+  border-top-right-radius: 8px;
+}
+
+/* Farbige Datenzellen (ungerade Zeilen) */
+.mitarbeiter-table tbody tr td.colcolor {
+  background-color: #d0eaf9;
+}
+
+/* Etwas dunklerer Hintergrund für gerade Zeilen (Zebra-Muster) */
+.mitarbeiter-table tbody tr:nth-child(even) td.colcolor {
+  background-color: #bfdef5;
+}
+
+/* Hover-Hervorhebung einer Zeile */
+.mitarbeiter-table tbody tr:hover td.colcolor {
+  background-color: #a0cfe8;
+}
+
+/* Abgerundete untere rechte Ecke der letzten Zeile */
+.mitarbeiter-table tbody tr:last-child td.colcolor-last {
+  border-bottom-right-radius: 8px;
+}
+
+/* Abgerundete untere linke Ecke der letzten Zeile */
+.mitarbeiter-table tbody tr:last-child td.colcolor-first {
+  border-bottom-left-radius: 8px;
+}
+
+.mitarbeiter-table td {
+  padding: 12px 20px;
+  font-size: 0.97rem;
+  color: #1a1a1a;
+}
+
+/* Schmale Spalte für die ID */
+.col-id {
+  width: 80px;
+  text-align: center;
+}
+
+/* Breite Spalte für den Nachnamen */
+.col-name {
+  width: 260px;
+}
+
+/* Passwort-Zelle: Icon und Text nebeneinander */
+.pw-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Passwort-Text: Klartext oder Punkte mit einheitlichem Mindestabstand */
+.pw-text {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: #333;
+  min-width: 70px;
+}
+
+/* ─────────────────────────────────────────
+   Auge-Button (Passwort ein-/ausblenden)
+───────────────────────────────────────── */
+
+.btn-eye {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #444;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.15s;
+}
+
+.btn-eye:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #000;
+}
+
+/* ─────────────────────────────────────────
+   Plus-Button (neuen Mitarbeiter anlegen)
+───────────────────────────────────────── */
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+/* Grüner quadratischer Plus-Button rechts neben der Tabelle */
+.btn-add {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s, transform 0.1s;
+  background-color: #2ecc71;
+}
+
+.btn-add:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+/* ─────────────────────────────────────────
+   Zeilen-Hover-Buttons (Bearbeiten / Löschen)
+───────────────────────────────────────── */
+
+/* Spalte für Inline-Aktions-Buttons */
+.col-row-actions {
+  width: 80px;
+  padding: 8px 6px !important;
+}
+
+/* Buttons sind standardmäßig unsichtbar und erscheinen beim Zeilen-Hover */
+.row-hover-buttons {
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.table-row:hover .row-hover-buttons {
+  opacity: 1;
+}
+
+/* Basis-Styling für Bearbeiten- und Löschen-Button */
+.btn-row-edit, .btn-row-delete {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+
+/* Bearbeiten-Button in Blau */
+.btn-row-edit {
+  background-color: #3498db;
+}
+
+/* Löschen-Button in Rot */
+.btn-row-delete {
+  background-color: #e74c3c;
+}
+
+.btn-row-edit:hover, .btn-row-delete:hover {
+  transform: scale(1.1);
+}
+
+/* ─────────────────────────────────────────
+   Dialog-Overlay
+───────────────────────────────────────── */
+
+/* Verdunkelt den Hintergrund wenn der Dialog geöffnet ist */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 100;
+}
+
+/* ─────────────────────────────────────────
+   Dialog-Box
+───────────────────────────────────────── */
+
+/* Zentriertes Modal-Fenster über dem Overlay */
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+  z-index: 101;
+  width: 420px;
+  max-width: 95vw;
+  padding: 28px 32px 24px;
+}
+
+/* Kopfzeile des Dialogs: Titel links, Schließen-Button rechts */
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.dialog-header h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+/* Schließen-Button (✕) oben rechts im Dialog */
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.btn-close:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+
+/* ─────────────────────────────────────────
+   Dialog-Formular
+───────────────────────────────────────── */
+
+/* Formular und Feldgruppen als vertikale Flex-Container */
+.dialog-form, .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Abstand zwischen den einzelnen Feldgruppen */
+.dialog-form {
+  gap: 14px;
+}
+
+/* Abstand zwischen Label und Eingabefeld */
+.form-group {
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.form-group input {
+  padding: 9px 12px;
+  border: 1px solid #c8d8e8;
+  border-radius: 7px;
+  font-size: 0.97rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+/* Blauer Fokus-Rahmen beim Aktiv-Setzen eines Felds */
+.form-group input:focus {
+  border-color: #3498db;
+}
+
+/* Gesperrte Felder (z. B. ID im Bearbeitungsmodus) visuell abschwächen */
+.form-group input:disabled {
+  background: #f0f4f8;
+  color: #888;
+}
+
+/* ─────────────────────────────────────────
+   Dialog-Aktions-Buttons
+───────────────────────────────────────── */
+
+/* Buttons rechtsbündig anordnen */
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* Gemeinsames Basis-Styling für Abbrechen- und Speichern-Button */
+.btn-cancel, .btn-submit {
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 0.92rem;
+}
+
+/* Abbrechen-Button: weiß mit hellem Rahmen (sekundäre Aktion) */
+.btn-cancel {
+  padding: 8px 18px;
+  border: 1px solid #c8d8e8;
+  background: #fff;
+  color: #444;
+}
+
+.btn-cancel:hover {
+  background: #f0f4f8;
+}
+
+/* Speichern-Button: blau gefüllt (primäre Aktion, AK 4) */
+.btn-submit {
+  padding: 8px 20px;
+  border: none;
+  background: #3498db;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #2176ae;
+}
+
+/* Deaktivierter Zustand: ausgegraut solange das Formular ungültig ist (AK 2) */
+.btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Zurücksetzen-Button: roter Rahmen als Warnung (AK 3) */
+.btn-reset {
+  border-color: #e74c3c !important;
+  color: #e74c3c !important;
+}
+
+.btn-reset:hover {
+  background: #fdecea !important;
+}
+
+/* ─────────────────────────────────────────
+   Validierung / Fehlermeldungen (AK 2)
+───────────────────────────────────────── */
+
+/* Fehlermeldung unterhalb des Eingabefeldes */
+.error-msg {
+  font-size: 0.78rem;
+  color: #c0392b;
+  margin-top: 2px;
+}
+
+/* Roter Rahmen bei ungültigem und bereits berührtem Feld (Angular ng-touched) */
+.form-group input:user-invalid,
+.form-group input.ng-invalid.ng-touched {
+  border-color: #e74c3c;
+}
+
+/* Grüner Rahmen bei gültigem und bereits berührtem Feld */
+.form-group input:user-valid,
+.form-group input.ng-valid.ng-touched {
+  border-color: #2ecc71;
+}

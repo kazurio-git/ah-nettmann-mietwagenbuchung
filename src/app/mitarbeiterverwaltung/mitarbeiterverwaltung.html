@@ -1,162 +1,135 @@
-<div class="mx-auto max-w-200 bg-[#b6d4e8] rounded-[20px] p-8 pb-10 shadow-lg">
-  <div class="flex items-center justify-between mb-4">
-    <h2 class="text-xl font-bold">Mitarbeitertabelle</h2>
-    <button
-      (click)="openAddDialog()"
-      class="w-10 h-10 rounded-md bg-green-500 hover:bg-green-600 text-white text-2xl font-bold flex items-center justify-center cursor-pointer shadow"
-      title="Mitarbeiter hinzufügen"
-      type="button"
-    >
-      +
-    </button>
+<div class="page-wrapper">
+
+  <!-- Tab-Header über der Tabelle -->
+  <div class="tab-header">
+    <span class="tab-label">Mitarbeitertabelle</span>
   </div>
 
-  <table class="w-full border-collapse bg-white rounded-lg shadow">
-    <thead>
-    <tr class="bg-[#5ba3d9] text-white text-left">
-      <th class="py-3 px-4 font-bold text-lg w-24">ID</th>
-      <th class="py-3 px-4 font-bold text-lg">Nachname</th>
-      <th class="py-3 px-4 font-bold text-lg">Passwort</th>
-    </tr>
-    </thead>
+  <div class="table-container">
 
-    <tbody>
-      @for (ma of mitarbeiterListe; track ma.id; let i = $index) {
-        <tr class="group relative border-b border-gray-200 even:bg-[#d6ebf7] hover:bg-[#c2dff0] transition-colors">
+    <!-- Übersichtstabelle aller Mitarbeiter -->
+    <table class="mitarbeiter-table">
+      <thead>
+      <tr>
+        <th class="col-id colcolor">ID</th>
+        <th class="col-name colcolor">Nachname</th>
+        <!-- Passwort-Spalte: Wert standardmäßig verborgen, per Auge-Button umschaltbar -->
+        <th class="col-pw colcolor colcolor-last">Passwort</th>
+        <th class="col-row-actions">
+          <!-- Plus-Button zum Anlegen eines neuen Mitarbeiters -->
+          <div class="action-buttons">
+            <button (click)="dialogOeffnenNeu()" class="btn-add" title="Neuer Mitarbeiter">
+              <svg fill="white" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              </svg>
+            </button>
+          </div>
 
-          @if (editIndex === i) {
-            <!-- Bearbeitungsmodus -->
-            <td class="py-3 px-4 font-mono text-sm">{{ ma.id }}</td>
-            <td class="py-3 px-4">
-              <input
-                [(ngModel)]="editModel.nachname"
-                class="w-full border border-gray-400 rounded px-2 py-1 text-sm bg-white outline-none focus:border-blue-500"
-                placeholder="Nachname"
-                type="text"
-              />
-            </td>
-            <td class="py-3 px-4 relative">
-              <input
-                [(ngModel)]="editModel.passwort"
-                class="w-full border border-gray-400 rounded px-2 py-1 text-sm bg-white outline-none focus:border-blue-500"
-                placeholder="Passwort"
-                type="text"
-              />
-              <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full flex gap-1 pl-2">
-                <button
-                  (click)="saveEdit(i)"
-                  class="w-8 h-8 rounded bg-green-500 hover:bg-green-600 text-white flex items-center justify-center cursor-pointer shadow"
-                  title="Speichern"
-                  type="button"
-                >
-                  ✓
-                </button>
-                <button
-                  (click)="cancelEdit()"
-                  class="w-8 h-8 rounded bg-gray-400 hover:bg-gray-500 text-white flex items-center justify-center cursor-pointer shadow"
-                  title="Abbrechen"
-                  type="button"
-                >
-                  ✕
-                </button>
-              </div>
-            </td>
-          } @else {
-            <td class="py-3 px-4 font-mono text-sm">{{ ma.id }}</td>
-            <td class="py-3 px-4">{{ ma.nachname }}</td>
-            <td class="py-3 px-4 relative">
-              <div class="flex items-center gap-2">
-                <span class="font-mono text-sm">
-                  @if (ma.passwortSichtbar) {
-                    {{ ma.passwort }}
-                  } @else {
-                    *****
-                  }
-                </span>
-                <button
-                  (click)="togglePasswort(ma)"
-                  class="w-7 h-7 rounded-full hover:bg-gray-200 flex justify-self-end items-center justify-center cursor-pointer text-gray-600 transition-colors opacity-0 group-hover:opacity-100"
-                  title="Passwort anzeigen/verbergen"
-                  type="button"
-                >
-                  @if (ma.passwortSichtbar) {
-                    👁️
-                  } @else {
-                    👁️‍🗨️
-                  }
-                </button>
-              </div>
-              <div
-                class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full flex gap-1 pl-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button
-                  (click)="startEdit(i)"
-                  class="w-8 h-8 rounded bg-blue-500 hover:bg-blue-600 text-white flex items-center justify-center cursor-pointer shadow"
-                  title="Bearbeiten"
-                  type="button"
-                >
-                  ✎
-                </button>
-                <button
-                  (click)="deleteMitarbeiter(i)"
-                  class="w-8 h-8 rounded bg-red-500 hover:bg-red-600 text-white flex items-center justify-center cursor-pointer shadow"
-                  title="Löschen"
-                  type="button"
-                >
-                  🗑
-                </button>
-              </div>
-            </td>
-          }
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Eine Zeile pro Mitarbeiter; *ngFor iteriert über die lokale Liste -->
+      <tr *ngFor="let ma of mitarbeiterListe" class="table-row">
+        <td class="col-id colcolor colcolor-first">{{ ma.id }}</td>
+        <td class="col-name colcolor">{{ ma.nachname }}</td>
+        <td class="col-pw colcolor colcolor-last">
+          <div class="pw-cell">
+            <!-- Passwort als Punkte oder Klartext je nach passwortSichtbar-Flag -->
+            <span class="pw-text">{{ ma.passwortSichtbar ? ma.passwort : '•••••' }}</span>
+            <!-- Auge-Button schaltet die Sichtbarkeit des Passworts um -->
+            <button (click)="ma.passwortSichtbar = !ma.passwortSichtbar" class="btn-eye" title="Passwort anzeigen">
+              <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                <!-- Auge-offen-Icon wenn Passwort versteckt ist -->
+                <path *ngIf="!ma.passwortSichtbar"
+                      d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+                <!-- Auge-durchgestrichen-Icon wenn Passwort sichtbar ist -->
+                <path *ngIf="ma.passwortSichtbar"
+                      d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46A11.804 11.804 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65a3 3 0 0 0 3 3c.22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53a5 5 0 0 1-5-5c0-.79.2-1.53.53-2.2zm4.31-.78 3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/>
+              </svg>
+            </button>
+          </div>
+        </td>
+        <!-- Bearbeiten- und Löschen-Buttons erscheinen beim Hover über die Zeile -->
+        <td class="col-row-actions">
+          <div class="row-hover-buttons">
+            <button (click)="dialogOeffnenBearbeiten(ma)" class="btn-row-edit" title="Bearbeiten">
+              <svg fill="white" height="15" viewBox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+              </svg>
+            </button>
+            <button (click)="mitarbeiterLoeschen(ma)" class="btn-row-delete" title="Löschen">
+              <svg fill="white" height="15" viewBox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 19c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+              </svg>
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-        </tr>
-      }
-    </tbody>
-  </table>
+<!-- Halbtransparentes Overlay hinter dem Dialog; Klick darauf schließt den Dialog -->
+<div (click)="dialogSchliessen()" *ngIf="dialogSichtbar" class="dialog-overlay"></div>
 
-  @if (showAddDialog) {
-    <div class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
-        <h3 class="text-lg font-bold mb-6">Neuen Mitarbeiter anlegen</h3>
+<!-- Dialog-Fenster: erscheint zentriert über dem Overlay -->
+<div *ngIf="dialogSichtbar" class="dialog">
+  <div class="dialog-header">
+    <!-- Überschrift wechselt je nach Modus (neu / bearbeiten) -->
+    <h2>{{ dialogModus === 'neu' ? 'Neuen Mitarbeiter anlegen' : 'Mitarbeiter bearbeiten' }}</h2>
+    <button (click)="dialogSchliessen()" class="btn-close" title="Schließen">✕</button>
+  </div>
 
-        <div class="mb-4">
-          <label class="block font-bold mb-1 text-sm" for="new-nachname">Nachname</label>
-          <input
-            [(ngModel)]="newModel.nachname"
-            class="w-full border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
-            id="new-nachname"
-            placeholder="Nachname eingeben"
-            type="text"
-          />
-        </div>
+  <!-- Formular wird per POST versendet (AK 4); ngSubmit ruft onSubmit() auf -->
+  <form #mitarbeiterForm="ngForm" (ngSubmit)="onSubmit()" class="dialog-form" method="POST">
 
-        <div class="mb-6">
-          <label class="block font-bold mb-1 text-sm" for="new-passwort">Passwort</label>
-          <input
-            [(ngModel)]="newModel.passwort"
-            class="w-full border border-gray-400 rounded px-3 py-2 text-sm bg-white outline-none focus:border-blue-500"
-            id="new-passwort"
-            placeholder="Passwort eingeben"
-            type="text"
-          />
-        </div>
-
-        <div class="flex gap-4">
-          <button
-            (click)="cancelAdd()"
-            class="flex-1 py-2 font-bold rounded-full cursor-pointer shadow-md border-2 border-gray-500 bg-white text-gray-700 hover:bg-gray-100"
-            type="button"
-          >
-            Abbrechen
-          </button>
-          <button
-            (click)="addMitarbeiter()"
-            class="flex-1 py-2 text-white font-bold rounded-full cursor-pointer shadow-md bg-blue-600 hover:bg-blue-700"
-            type="button"
-          >
-            Anlegen
-          </button>
-        </div>
-      </div>
+    <!-- Pflichtfeld: Mitarbeiter-ID – nur 3–6 Ziffern erlaubt (AK 1 & 2) -->
+    <div class="form-group">
+      <label for="ma-id">Mitarbeiter-ID</label>
+      <!-- Im Bearbeitungsmodus gesperrt, damit die ID nicht verändert werden kann -->
+      <input #maId="ngModel" [(ngModel)]="formDaten.id" [disabled]="dialogModus === 'bearbeiten'" id="ma-id"
+             maxlength="6" minlength="3"
+             name="id" pattern="[0-9]{3,6}" placeholder="z. B. 010" required type="text"/>
+      <!-- Fehlermeldung erscheint nach dem ersten Berühren des Feldes (AK 2) -->
+      <span *ngIf="maId.invalid && maId.touched" class="error-msg">
+        Bitte eine gültige ID eingeben (3–6 Ziffern).
+      </span>
     </div>
-  }
+
+    <!-- Pflichtfeld: Nachname – mindestens 2, höchstens 50 Zeichen (AK 1 & 2) -->
+    <div class="form-group">
+      <label for="ma-name">Nachname</label>
+      <input #maName="ngModel" [(ngModel)]="formDaten.nachname" id="ma-name" maxlength="50" minlength="2"
+             name="nachname" placeholder="Nachname eingeben" required type="text"/>
+      <span *ngIf="maName.invalid && maName.touched" class="error-msg">
+        Bitte einen gültigen Nachnamen eingeben (mind. 2 Zeichen).
+      </span>
+    </div>
+
+    <!-- Pflichtfeld: Passwort – type="password" maskiert die Eingabe (AK 1 & 2) -->
+    <div class="form-group">
+      <label for="ma-pw">Passwort</label>
+      <input #maPw="ngModel" [(ngModel)]="formDaten.passwort" id="ma-pw" maxlength="30" minlength="4"
+             name="passwort" placeholder="Passwort eingeben" required type="password"/>
+      <span *ngIf="maPw.invalid && maPw.touched" class="error-msg">
+        Bitte ein Passwort eingeben (mind. 4 Zeichen).
+      </span>
+    </div>
+
+    <div class="dialog-actions">
+      <!-- Zurücksetzen: leert alle Felder und entfernt Validierungs-Markierungen (AK 3) -->
+      <button (click)="formZuruecksetzen(mitarbeiterForm)" class="btn-cancel btn-reset" type="button">Zurücksetzen
+      </button>
+      <!-- Abbrechen: schließt den Dialog ohne Änderungen zu speichern -->
+      <button (click)="dialogSchliessen()" class="btn-cancel" type="button">Abbrechen</button>
+      <!-- Speichern-Button ist solange deaktiviert, bis alle Pflichtfelder valide sind (AK 2) -->
+      <button [disabled]="!mitarbeiterForm.valid" class="btn-submit" type="submit">
+        {{ dialogModus === 'neu' ? 'Anlegen' : 'Speichern' }}
+      </button>
+    </div>
+
+  </form>
 </div>
