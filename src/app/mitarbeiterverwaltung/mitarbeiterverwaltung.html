@@ -83,23 +83,23 @@
     <button (click)="dialogSchliessen()" class="btn-close" title="Schließen">✕</button>
   </div>
 
-  <!-- Formular wird per POST versendet (AK 4); ngSubmit ruft onSubmit() auf -->
+  <!-- Formular wird per POST versendet; ngSubmit ruft onSubmit() auf -->
   <form #mitarbeiterForm="ngForm" (ngSubmit)="onSubmit()" class="dialog-form" method="POST">
 
-    <!-- Pflichtfeld: Mitarbeiter-ID – nur 3–6 Ziffern erlaubt (AK 1 & 2) -->
+    <!-- Pflichtfeld: Mitarbeiter-ID – nur 3–6 Ziffern erlaubt -->
     <div class="form-group">
       <label for="ma-id">Mitarbeiter-ID</label>
       <!-- Im Bearbeitungsmodus gesperrt, damit die ID nicht verändert werden kann -->
       <input #maId="ngModel" [(ngModel)]="formDaten.id" [disabled]="dialogModus === 'bearbeiten'" id="ma-id"
              maxlength="6" minlength="3"
              name="id" pattern="[0-9]{3,6}" placeholder="z. B. 010" required type="text"/>
-      <!-- Fehlermeldung erscheint nach dem ersten Berühren des Feldes (AK 2) -->
+      <!-- Fehlermeldung erscheint nach dem ersten Berühren des Feldes -->
       <span *ngIf="maId.invalid && maId.touched" class="error-msg">
         Bitte eine gültige ID eingeben (3–6 Ziffern).
       </span>
     </div>
 
-    <!-- Pflichtfeld: Nachname – mindestens 2, höchstens 50 Zeichen (AK 1 & 2) -->
+    <!-- Pflichtfeld: Nachname – mindestens 2, höchstens 50 Zeichen -->
     <div class="form-group">
       <label for="ma-name">Nachname</label>
       <input #maName="ngModel" [(ngModel)]="formDaten.nachname" id="ma-name" maxlength="50" minlength="2"
@@ -109,7 +109,7 @@
       </span>
     </div>
 
-    <!-- Pflichtfeld: Passwort – type="password" maskiert die Eingabe (AK 1 & 2) -->
+    <!-- Pflichtfeld: Passwort – type="password" maskiert die Eingabe -->
     <div class="form-group">
       <label for="ma-pw">Passwort</label>
       <input #maPw="ngModel" [(ngModel)]="formDaten.passwort" id="ma-pw" maxlength="30" minlength="4"
@@ -120,12 +120,12 @@
     </div>
 
     <div class="dialog-actions">
-      <!-- Zurücksetzen: leert alle Felder und entfernt Validierungs-Markierungen (AK 3) -->
+      <!-- Zurücksetzen: leert alle Felder und entfernt Validierungs-Markierungen -->
       <button (click)="formZuruecksetzen(mitarbeiterForm)" class="btn-cancel btn-reset" type="button">Zurücksetzen
       </button>
       <!-- Abbrechen: schließt den Dialog ohne Änderungen zu speichern -->
       <button (click)="dialogSchliessen()" class="btn-cancel" type="button">Abbrechen</button>
-      <!-- Speichern-Button ist solange deaktiviert, bis alle Pflichtfelder valide sind (AK 2) -->
+      <!-- Speichern-Button ist solange deaktiviert, bis alle Pflichtfelder valide sind -->
       <button [disabled]="!mitarbeiterForm.valid" class="btn-submit" type="submit">
         {{ dialogModus === 'neu' ? 'Anlegen' : 'Speichern' }}
       </button>

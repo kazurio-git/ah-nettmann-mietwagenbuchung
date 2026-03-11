@@ -380,13 +380,13 @@
   background: #2176ae;
 }
 
-/* Deaktivierter Zustand: ausgegraut solange das Formular ungültig ist (AK 2) */
+/* Deaktivierter Zustand: ausgegraut solange das Formular ungültig ist */
 .btn-submit:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-/* Zurücksetzen-Button: roter Rahmen als Warnung (AK 3) */
+/* Zurücksetzen-Button: roter Rahmen als Warnung */
 .btn-reset {
   border-color: #e74c3c !important;
   color: #e74c3c !important;
@@ -397,7 +397,7 @@
 }
 
 /* ─────────────────────────────────────────
-   Validierung / Fehlermeldungen (AK 2)
+   Validierung / Fehlermeldungen
 ───────────────────────────────────────── */
 
 /* Fehlermeldung unterhalb des Eingabefeldes */
