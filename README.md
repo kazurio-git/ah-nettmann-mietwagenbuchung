@@ -1,59 +1,160 @@
-# AHNettmannPrototyp
+# AH-Nettmann-Prototyp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
+![Angular](https://img.shields.io/badge/Angular-v21.2-DD0031?logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-~5.9-3178C6?logo=typescript&logoColor=white)
+![Angular Material](https://img.shields.io/badge/Angular%20Material-v21.2-9C27B0?logo=angular&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4.1-38BDF8?logo=tailwindcss&logoColor=white)
+![License](https://img.shields.io/badge/Lizenz-Privat-lightgrey)
 
-## Development server
+Prototyp einer Webanwendung für das Unternehmen **Nettmann**, entwickelt mit Angular 21 und Angular Material. Die Anwendung umfasst eine Homepage, eine Mietwagenbuchung sowie eine Mitarbeiterverwaltung.
 
-To start a local development server, run:
+---
+
+## Inhaltsverzeichnis
+
+- [Voraussetzungen](#voraussetzungen)
+- [Angular installieren](#angular-installieren)
+- [Projekt installieren & starten](#projekt-installieren--starten)
+- [Projektstruktur](#projektstruktur)
+- [Verfügbare Skripte](#verfügbare-skripte)
+- [Technologie-Stack](#technologie-stack)
+- [Weiterführende Ressourcen](#weiterführende-ressourcen)
+
+---
+
+## Voraussetzungen
+
+Stelle sicher, dass folgende Software auf deinem System installiert ist:
+
+| Software | Mindestversion  | Download                            |
+|----------|-----------------|-------------------------------------|
+| Node.js  | 18.x oder höher | [nodejs.org](https://nodejs.org/)   |
+| npm      | 9.x oder höher  | Wird mit Node.js mitgeliefert       |
+| Git      | beliebig        | [git-scm.com](https://git-scm.com/) |
+
+Versionen prüfen:
 
 ```bash
-ng serve
+node --version
+npm --version
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Angular installieren
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Falls Angular CLI noch nicht installiert ist, kann es global über npm eingerichtet werden:
 
 ```bash
-ng generate component component-name
+npm install -g @angular/cli
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Nach der Installation die erfolgreiche Einrichtung verifizieren:
+
+```bash
+ng version
+```
+
+Die Ausgabe sollte die Angular CLI Version sowie weitere Paketversionen anzeigen.
+
+> **Hinweis:** Dieses Projekt verwendet Angular CLI **v21.2.1**. Bei einer abweichenden globalen Version kann es zu Kompatibilitätsproblemen kommen. In diesem Fall empfiehlt sich die Verwendung von `npx ng` statt `ng`.
+
+---
+
+## Projekt installieren & starten
+
+### 1. Repository klonen
+
+```bash
+git clone <repository-url>
+cd AH-Nettmann-Prototyp
+```
+
+### 2. Abhängigkeiten installieren
+
+```bash
+npm install
+```
+
+### 3. Entwicklungsserver starten
+
+```bash
+npm start
+```
+
+Der Entwicklungsserver ist anschließend unter [`http://localhost:4200/`](http://localhost:4200/) erreichbar. Die Anwendung lädt automatisch neu, sobald Quelldateien geändert werden.
+
+---
+
+## Projektstruktur
+
+```
+AH-Nettmann-Prototyp/
+├── public/                     # Statische Assets (Favicon, Bilder)
+│   └── assets/
+│       └── Logo-Nettmann.png
+├── src/
+│   ├── index.html              # Einstiegspunkt der Anwendung
+│   ├── main.ts                 # Bootstrap der Angular-Anwendung
+│   ├── styles.css              # Globale Styles
+│   ├── material-theme.scss     # Angular Material Theme-Konfiguration
+│   └── app/
+│       ├── app.ts              # Root-Komponente
+│       ├── app.routes.ts       # Routing-Konfiguration
+│       ├── app.config.ts       # Anwendungskonfiguration
+│       ├── homepage/           # Homepage-Komponente
+│       ├── mietwagenbuchung/   # Mietwagenbuchungs-Formular
+│       └── mitarbeiterverwaltung/ # Mitarbeiterverwaltungs-Formular
+├── angular.json                # Angular CLI Konfiguration
+├── package.json                # Projektabhängigkeiten & Skripte
+└── tsconfig.json               # TypeScript-Konfiguration
+```
+
+---
+
+## Verfügbare Skripte
+
+| Befehl          | Beschreibung                                                        |
+|-----------------|---------------------------------------------------------------------|
+| `npm start`     | Startet den Entwicklungsserver auf Port 4200                        |
+| `npm run build` | Erstellt einen optimierten Produktions-Build im `dist/`-Verzeichnis |
+| `npm run watch` | Erstellt den Build im Watch-Modus (Development-Konfiguration)       |
+| `npm test`      | Führt Unit-Tests mit [Vitest](https://vitest.dev/) aus              |
+
+### Code-Generierung
+
+Neue Komponenten und andere Angular-Bausteine lassen sich über die Angular CLI generieren:
+
+```bash
+ng generate component komponenten-name
+```
+
+Eine vollständige Übersicht aller verfügbaren Schematics:
 
 ```bash
 ng generate --help
 ```
 
-## Building
+---
 
-To build the project run:
+## Technologie-Stack
 
-```bash
-ng build
-```
+| Technologie      | Version | Verwendungszweck            |
+|------------------|---------|-----------------------------|
+| Angular          | ^21.2.0 | Frontend-Framework          |
+| Angular Material | ^21.2.1 | UI-Komponentenbibliothek    |
+| Angular CDK      | ^21.2.1 | Komponentenentwicklungs-Kit |
+| TailwindCSS      | ^4.1.12 | Utility-First CSS-Framework |
+| TypeScript       | ~5.9.2  | Typsicheres JavaScript      |
+| RxJS             | ~7.8.0  | Reaktive Programmierung     |
+| Vitest           | ^4.0.8  | Unit-Test-Framework         |
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## Weiterführende Ressourcen
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Angular Dokumentation](https://angular.dev/)
+- [Angular CLI Referenz](https://angular.dev/tools/cli)
+- [Angular Material Komponenten](https://material.angular.io/components/categories)
+- [TailwindCSS Dokumentation](https://tailwindcss.com/docs)
+- [Vitest Dokumentation](https://vitest.dev/)
