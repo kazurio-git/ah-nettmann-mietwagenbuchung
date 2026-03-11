@@ -75,7 +75,7 @@ export class Mitarbeiterverwaltung {
   /**
    * Setzt alle Formularfelder auf leere Werte zurück und markiert das
    * Angular-Formular als unberührt (pristine/untouched), damit Fehlermeldungen
-   * wieder verschwinden (AK 3).
+   * wieder verschwinden.
    * Im "bearbeiten"-Modus wird die gesperrte ID nach dem Reset wiederhergestellt.
    */
   formZuruecksetzen(form: NgForm): void {
@@ -90,7 +90,7 @@ export class Mitarbeiterverwaltung {
 
   /**
    * Versendet die Formulardaten per HTTP POST (neu) oder PUT (bearbeiten) an die REST-API.
-   * Bei Erfolg wird die lokale Liste aktualisiert und der Dialog geschlossen (AK 4).
+   * Bei Erfolg wird die lokale Liste aktualisiert und der Dialog geschlossen.
    */
   onSubmit(): void {
     const url = '/api/mitarbeiter';
